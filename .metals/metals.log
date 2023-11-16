@@ -12,3 +12,332 @@
 [0m2023.10.31 15:06:17 WARN  no build target for: /users/jgammon1/jobsiteProject/server/app/controllers/JobSite.scala[0m
 [0m2023.10.31 15:06:17 WARN  no build target for: /users/jgammon1/jobsiteProject/server/app/controllers/TigerHire.scala[0m
 [0m2023.10.31 15:19:39 WARN  no build target for: /users/jgammon1/jobsiteProject/server/app/controllers/TigerHire.scala[0m
+2023.11.14 14:38:46 INFO  Started: Metals version 1.1.0 in folders 'C:\Users\fires\jobsiteProject' for client Visual Studio Code 1.84.2.
+2023.11.14 14:38:46 INFO  Deleting old database format C:\Users\fires\jobsiteProject\.metals\metals.h2.db
+2023.11.14 14:38:50 WARN  Build server is not auto-connectable.
+2023.11.14 14:38:56 INFO  running 'C:\Program Files\Java\jdk-17\bin\java.exe -Djline.terminal=jline.UnsupportedTerminal -Dsbt.log.noformat=true -Dfile.encoding=UTF-8 -jar C:\Users\fires\AppData\Local\Temp\metals4795837380941001713\sbt-launch.jar -Dbloop.export-jar-classifiers=sources bloopInstall'
+2023.11.14 14:38:58 INFO  [info] welcome to sbt 1.9.4 (Oracle Corporation Java 17.0.8)
+2023.11.14 14:39:00 INFO  [info] loading settings for project jobsiteproject-build-build-build from metals.sbt ...
+2023.11.14 14:39:00 INFO  [info] loading project definition from C:\Users\fires\jobsiteProject\project\project\project
+2023.11.14 14:39:02 INFO  [info] loading settings for project jobsiteproject-build-build from metals.sbt ...
+2023.11.14 14:39:02 INFO  [info] loading project definition from C:\Users\fires\jobsiteProject\project\project
+2023.11.14 14:39:04 INFO  [success] Generated .bloop\jobsiteproject-build-build.json
+2023.11.14 14:39:04 INFO  [success] Total time: 2 s, completed Nov 14, 2023, 2:39:04 PM
+2023.11.14 14:39:06 INFO  [info] loading settings for project jobsiteproject-build from metals.sbt,plugins.sbt ...
+2023.11.14 14:39:06 INFO  [info] loading project definition from C:\Users\fires\jobsiteProject\project
+2023.11.14 14:39:08 INFO  [success] Total time: 2 s, completed Nov 14, 2023, 2:39:08 PM
+2023.11.14 14:39:08 WARN  no build target for: C:\Users\fires\jobsiteProject\server\app\controllers\TigerHire.scala
+2023.11.14 14:39:10 INFO  [info] loading settings for project jobsiteproject from build.sbt ...
+2023.11.14 14:39:10 INFO  [info] set current project to jobsiteproject (in build file:/C:/Users/fires/jobsiteProject/)
+2023.11.14 14:39:10 INFO  [info]   __              __
+2023.11.14 14:39:10 INFO  [info]   \ \     ____   / /____ _ __  __
+2023.11.14 14:39:10 INFO  [info]    \ \   / __ \ / // __ `// / / /
+2023.11.14 14:39:10 INFO  [info]    / /  / /_/ // // /_/ // /_/ /
+2023.11.14 14:39:10 INFO  [info]   /_/  / .___//_/ \__,_/ \__, /
+2023.11.14 14:39:10 INFO  [info]       /_/               /____/
+2023.11.14 14:39:10 INFO  [info] 
+2023.11.14 14:39:10 INFO  [info] Version 2.8.20 running Java 17.0.8
+2023.11.14 14:39:10 INFO  [info] 
+2023.11.14 14:39:10 INFO  [info] Play is run entirely by the community. Please consider contributing and/or donating:
+2023.11.14 14:39:10 INFO  [info] https://www.playframework.com/sponsors
+2023.11.14 14:39:10 INFO  [info] 
+2023.11.14 14:39:10 INFO  [info] Running Play on Java 17 is experimental. Tweaks are necessary:
+2023.11.14 14:39:10 INFO  [info] https://github.com/playframework/playframework/releases/2.8.15
+2023.11.14 14:39:10 INFO  [info] 
+2023.11.14 14:39:11 INFO  no build target found for C:\Users\fires\jobsiteProject\server\app\controllers\TigerHire.scala. Using presentation compiler with project's scala-library version: 3.3.1
+2023.11.14 14:39:11 INFO  [success] Generated .bloop\sharedJS.json
+2023.11.14 14:39:11 INFO  [success] Generated .bloop\sharedJS-test.json
+2023.11.14 14:39:11 INFO  [success] Generated .bloop\jobsiteproject.json
+2023.11.14 14:39:11 INFO  [success] Generated .bloop\jobsiteproject-test.json
+2023.11.14 14:39:11 INFO  [success] Generated .bloop\sharedJVM.json
+2023.11.14 14:39:11 INFO  [success] Generated .bloop\sharedJVM-test.json
+2023.11.14 14:39:12 INFO  [success] Generated .bloop\client-test.json
+2023.11.14 14:39:12 INFO  [success] Generated .bloop\client.json
+2023.11.14 14:39:13 INFO  time: code lens generation in 4.36s
+2023.11.14 14:39:12 INFO  [success] Generated .bloop\server.json
+2023.11.14 14:39:12 INFO  [success] Generated .bloop\server-test.json
+2023.11.14 14:39:14 INFO  [success] Total time: 3 s, completed Nov 14, 2023, 2:39:14 PM
+2023.11.14 14:39:14 INFO  time: ran 'sbt bloopInstall' in 17s
+2023.11.14 14:39:14 INFO  Attempting to connect to the build server...
+2023.11.14 14:39:14 INFO  Bloop uses C:\Program Files\Java\jre-1.8 defined at C:\Users\fires\.bloop\bloop.json
+2023.11.14 14:39:14 INFO  tracing is disabled for protocol BSP, to enable tracing of incoming and outgoing JSON messages create an empty file at C:\Users\fires\jobsiteProject\.metals\bsp.trace.json or C:\Users\fires\AppData\Local\scalameta\metals\cache\bsp.trace.json
+2023.11.14 14:39:14 INFO  Attempting to connect to the build server...
+2023.11.14 14:39:14 INFO  Bloop uses C:\Program Files\Java\jre-1.8 defined at C:\Users\fires\.bloop\bloop.json
+2023.11.14 14:39:14 INFO  Attempting to connect to the build server...
+2023.11.14 14:39:14 INFO  Bloop uses C:\Program Files\Java\jre-1.8 defined at C:\Users\fires\.bloop\bloop.json
+2023.11.14 14:39:14 INFO  tracing is disabled for protocol BSP, to enable tracing of incoming and outgoing JSON messages create an empty file at C:\Users\fires\jobsiteProject\project\project\.metals\bsp.trace.json or C:\Users\fires\AppData\Local\scalameta\metals\cache\bsp.trace.json
+2023.11.14 14:39:14 INFO  tracing is disabled for protocol BSP, to enable tracing of incoming and outgoing JSON messages create an empty file at C:\Users\fires\jobsiteProject\project\.metals\bsp.trace.json or C:\Users\fires\AppData\Local\scalameta\metals\cache\bsp.trace.json
+2023.11.14 14:39:14 INFO  time: Connected to build server in 0.2s
+2023.11.14 14:39:14 INFO  Connected to Build server: Bloop v1.5.11
+2023.11.14 14:39:18 INFO  compiling sharedjvm (1 scala source)
+2023.11.14 14:39:19 INFO  time: compiled sharedJVM in 1.04s
+2023.11.14 14:39:19 INFO  compiling server (18 scala sources and 1 java source)
+2023.11.14 14:39:19 INFO  time: compiled server in 0.18s
+2023.11.14 14:39:21 INFO  time: indexed workspace in 7.25s
+2023.11.14 14:39:22 INFO  compiling sharedjs (1 scala source)
+2023.11.14 14:39:22 INFO  Generated JavaScript file 'C:\Users\fires\jobsiteProject\.bloop\client\client-test.js'
+2023.11.14 14:39:22 ERROR Build server error: Cannot discover test frameworks, missing node_modules in test project, expected them at C:\Users\fires\jobsiteProject\client\node_modules
+2023.11.14 14:39:22 INFO  compiling server (18 scala sources and 1 java source)
+2023.11.14 14:39:24 INFO  time: compiled server in 1.44s
+2023.11.14 14:39:24 INFO  Generated JavaScript file 'C:\Users\fires\jobsiteProject\.bloop\sharedJS\sharedJS-test.js'
+2023.11.14 14:39:24 ERROR Build server error: Cannot discover test frameworks, missing node_modules in test project, expected them at C:\Users\fires\jobsiteProject\shared\.js\node_modules
+2023.11.14 14:39:24 INFO  time: compiled sharedJS in 2.31s
+2023.11.14 14:39:24 INFO  compiling client (1 scala source)
+2023.11.14 14:39:25 INFO  time: compiled client in 0.69s
+2023.11.14 14:43:27 INFO  compiling server (18 scala sources and 1 java source)
+2023.11.14 14:43:27 INFO  time: compiled server in 0.12s
+2023.11.14 14:43:29 INFO  compiling server (18 scala sources and 1 java source)
+2023.11.14 14:43:29 INFO  time: compiled server in 0.11s
+2023.11.14 14:43:32 INFO  compiling server (18 scala sources and 1 java source)
+2023.11.14 14:43:32 INFO  time: compiled server in 0.14s
+2023.11.14 14:44:53 INFO  compiling server (18 scala sources and 1 java source)
+2023.11.14 14:44:53 INFO  time: compiled server in 0.1s
+2023.11.14 14:44:55 INFO  compiling server (18 scala sources and 1 java source)
+2023.11.14 14:44:55 INFO  time: compiled server in 0.15s
+2023.11.14 14:45:12 INFO  compiling server (18 scala sources and 1 java source)
+2023.11.14 14:45:12 INFO  time: compiled server in 0.11s
+2023.11.14 14:45:14 INFO  compiling server (18 scala sources and 1 java source)
+2023.11.14 14:45:14 INFO  time: compiled server in 94ms
+2023.11.14 14:45:17 INFO  compiling server (18 scala sources and 1 java source)
+2023.11.14 14:45:17 INFO  time: compiled server in 0.1s
+Nov 14, 2023 2:45:18 PM org.eclipse.lsp4j.jsonrpc.services.GenericEndpoint notify
+INFO: Unsupported notification method: $/setTrace
+2023.11.14 14:53:13 INFO  compiling server (18 scala sources and 1 java source)
+2023.11.14 14:53:13 INFO  time: compiled server in 0.11s
+2023.11.14 14:56:45 INFO  compiling server (18 scala sources and 1 java source)
+2023.11.14 14:56:45 INFO  time: compiled server in 0.1s
+2023.11.14 14:57:44 INFO  compiling server (18 scala sources and 1 java source)
+2023.11.14 14:57:44 INFO  time: compiled server in 96ms
+2023.11.14 14:59:32 INFO  compiling server (18 scala sources and 1 java source)
+2023.11.14 14:59:32 INFO  time: compiled server in 0.12s
+2023.11.14 15:02:55 INFO  compiling server (18 scala sources and 1 java source)
+2023.11.14 15:02:55 INFO  time: compiled server in 0.13s
+2023.11.14 15:02:57 INFO  compiling server (18 scala sources and 1 java source)
+2023.11.14 15:02:57 INFO  time: compiled server in 96ms
+2023.11.14 15:03:07 INFO  compiling server (18 scala sources and 1 java source)
+2023.11.14 15:03:07 INFO  time: compiled server in 0.16s
+2023.11.14 15:03:09 INFO  compiling server (18 scala sources and 1 java source)
+2023.11.14 15:03:09 INFO  time: compiled server in 0.61s
+2023.11.14 15:03:17 INFO  compiling server (18 scala sources and 1 java source)
+2023.11.14 15:03:17 INFO  time: compiled server in 0.43s
+Nov 14, 2023 3:04:52 PM org.eclipse.lsp4j.jsonrpc.RemoteEndpoint handleCancellation
+WARNING: Unmatched cancel notification for request id 284
+Nov 14, 2023 3:05:00 PM org.eclipse.lsp4j.jsonrpc.RemoteEndpoint handleCancellation
+WARNING: Unmatched cancel notification for request id 289
+Nov 14, 2023 3:05:01 PM org.eclipse.lsp4j.jsonrpc.RemoteEndpoint handleCancellation
+WARNING: Unmatched cancel notification for request id 294
+Nov 14, 2023 3:05:05 PM org.eclipse.lsp4j.jsonrpc.RemoteEndpoint handleCancellation
+WARNING: Unmatched cancel notification for request id 305
+Nov 14, 2023 3:05:05 PM org.eclipse.lsp4j.jsonrpc.RemoteEndpoint handleCancellation
+WARNING: Unmatched cancel notification for request id 308
+Nov 14, 2023 3:05:13 PM org.eclipse.lsp4j.jsonrpc.RemoteEndpoint handleCancellation
+WARNING: Unmatched cancel notification for request id 366
+Nov 14, 2023 3:05:13 PM org.eclipse.lsp4j.jsonrpc.RemoteEndpoint handleCancellation
+WARNING: Unmatched cancel notification for request id 367
+2023.11.14 15:05:25 INFO  compiling server (18 scala sources and 1 java source)
+2023.11.14 15:05:25 INFO  time: compiled server in 0.27s
+Nov 14, 2023 3:05:35 PM org.eclipse.lsp4j.jsonrpc.RemoteEndpoint handleCancellation
+WARNING: Unmatched cancel notification for request id 419
+Nov 14, 2023 3:05:35 PM org.eclipse.lsp4j.jsonrpc.RemoteEndpoint handleCancellation
+WARNING: Unmatched cancel notification for request id 420
+Nov 14, 2023 3:05:35 PM org.eclipse.lsp4j.jsonrpc.RemoteEndpoint handleCancellation
+WARNING: Unmatched cancel notification for request id 424
+2023.11.14 15:05:51 INFO  compiling server (18 scala sources and 1 java source)
+2023.11.14 15:05:51 INFO  time: compiled server in 0.32s
+2023.11.14 15:05:59 INFO  compiling server (18 scala sources and 1 java source)
+2023.11.14 15:05:59 INFO  time: compiled server in 0.24s
+2023.11.14 15:06:14 INFO  compiling server (18 scala sources and 1 java source)
+2023.11.14 15:06:14 INFO  time: compiled server in 0.26s
+2023.11.14 15:06:17 INFO  compiling server (18 scala sources and 1 java source)
+2023.11.14 15:06:17 INFO  time: compiled server in 0.3s
+Nov 14, 2023 3:06:47 PM org.eclipse.lsp4j.jsonrpc.RemoteEndpoint handleCancellation
+WARNING: Unmatched cancel notification for request id 584
+2023.11.14 15:06:52 INFO  compiling server (18 scala sources and 1 java source)
+2023.11.14 15:06:52 INFO  time: compiled server in 0.23s
+2023.11.14 15:06:55 INFO  compiling server (18 scala sources and 1 java source)
+2023.11.14 15:06:55 INFO  time: compiled server in 0.26s
+2023.11.14 15:07:04 INFO  Shutting down server
+2023.11.14 15:07:04 INFO  shutting down Metals
+2023.11.14 15:07:04 INFO  Shut down connection with build server.
+2023.11.14 15:07:04 INFO  Shut down connection with build server.
+2023.11.14 15:07:04 INFO  Shut down connection with build server.
+2023.11.14 15:07:04 INFO  Exiting server
+2023.11.14 15:07:20 INFO  Started: Metals version 1.1.0 in folders 'C:\Users\fires\jobsiteProject' for client Visual Studio Code 1.84.2.
+2023.11.14 15:07:21 INFO  Attempting to connect to the build server...
+2023.11.14 15:07:21 INFO  skipping build import with status 'Installed'
+2023.11.14 15:07:21 INFO  Bloop uses C:\Program Files\Java\jre-1.8 defined at C:\Users\fires\.bloop\bloop.json
+2023.11.14 15:07:21 INFO  tracing is disabled for protocol BSP, to enable tracing of incoming and outgoing JSON messages create an empty file at C:\Users\fires\jobsiteProject\.metals\bsp.trace.json or C:\Users\fires\AppData\Local\scalameta\metals\cache\bsp.trace.json
+2023.11.14 15:07:21 INFO  Attempting to connect to the build server...
+2023.11.14 15:07:21 INFO  Bloop uses C:\Program Files\Java\jre-1.8 defined at C:\Users\fires\.bloop\bloop.json
+2023.11.14 15:07:21 INFO  Attempting to connect to the build server...
+2023.11.14 15:07:21 INFO  Bloop uses C:\Program Files\Java\jre-1.8 defined at C:\Users\fires\.bloop\bloop.json
+2023.11.14 15:07:21 INFO  tracing is disabled for protocol BSP, to enable tracing of incoming and outgoing JSON messages create an empty file at C:\Users\fires\jobsiteProject\project\project\.metals\bsp.trace.json or C:\Users\fires\AppData\Local\scalameta\metals\cache\bsp.trace.json
+2023.11.14 15:07:21 INFO  tracing is disabled for protocol BSP, to enable tracing of incoming and outgoing JSON messages create an empty file at C:\Users\fires\jobsiteProject\project\.metals\bsp.trace.json or C:\Users\fires\AppData\Local\scalameta\metals\cache\bsp.trace.json
+2023.11.14 15:07:21 INFO  time: Connected to build server in 0.53s
+2023.11.14 15:07:21 INFO  Connected to Build server: Bloop v1.5.11
+2023.11.14 15:07:22 INFO  time: Imported build in 0.12s
+Nov 14, 2023 3:07:22 PM org.eclipse.lsp4j.jsonrpc.RemoteEndpoint handleCancellation
+WARNING: Unmatched cancel notification for request id 5
+2023.11.14 15:07:27 INFO  time: indexed workspace in 5.45s
+2023.11.14 15:07:29 INFO  compiling server (18 scala sources and 1 java source)
+2023.11.14 15:07:29 INFO  time: compiled server in 0.19s
+2023.11.14 15:07:29 INFO  Generated JavaScript file 'C:\Users\fires\jobsiteProject\.bloop\client\client-test.js'
+2023.11.14 15:07:29 ERROR Build server error: Cannot discover test frameworks, missing node_modules in test project, expected them at C:\Users\fires\jobsiteProject\client\node_modules
+2023.11.14 15:07:29 INFO  Generated JavaScript file 'C:\Users\fires\jobsiteProject\.bloop\sharedJS\sharedJS-test.js'
+2023.11.14 15:07:29 ERROR Build server error: Cannot discover test frameworks, missing node_modules in test project, expected them at C:\Users\fires\jobsiteProject\shared\.js\node_modules
+2023.11.14 15:07:30 INFO  compiling server (18 scala sources and 1 java source)
+2023.11.14 15:07:30 INFO  time: compiled server in 0.3s
+2023.11.14 15:07:32 INFO  compiling server (18 scala sources and 1 java source)
+2023.11.14 15:07:32 INFO  time: compiled server in 0.43s
+2023.11.14 15:07:50 INFO  compiling server (18 scala sources and 1 java source)
+2023.11.14 15:07:50 INFO  time: compiled server in 0.3s
+2023.11.14 15:07:53 INFO  compiling server (18 scala sources and 1 java source)
+2023.11.14 15:07:53 INFO  time: compiled server in 0.27s
+2023.11.14 15:08:16 INFO  compiling server (18 scala sources and 1 java source)
+2023.11.14 15:08:16 INFO  time: compiled server in 0.22s
+2023.11.14 15:09:28 INFO  compiling server (18 scala sources and 1 java source)
+2023.11.14 15:09:28 INFO  time: compiled server in 0.2s
+2023.11.14 15:11:28 INFO  compiling server (18 scala sources and 1 java source)
+2023.11.14 15:11:28 INFO  time: compiled server in 0.17s
+2023.11.14 15:11:37 INFO  compiling server (18 scala sources and 1 java source)
+2023.11.14 15:11:41 WARN  Error reading API from class file: controllers.routes : java.lang.UnsupportedClassVersionError: controllers/routes has been compiled by a more recent version of the Java Runtime (class file version 61.0), this version of the Java Runtime only recognizes class file versions up to 52.0
+2023.11.14 15:11:41 WARN  Error reading API from class file: controllers.routes$javascript : java.lang.UnsupportedClassVersionError: controllers/routes$javascript has been compiled by a more recent version of the Java Runtime (class file version 61.0), this version of the Java Runtime only recognizes class file versions up to 52.0
+2023.11.14 15:11:41 INFO  time: compiled server in 3.63s
+2023.11.14 15:14:25 INFO  compiling server (1 scala source)
+2023.11.14 15:14:25 INFO  time: compiled server in 0.12s
+2023.11.14 15:14:54 INFO  compiling server (1 scala source)
+2023.11.14 15:14:54 INFO  time: compiled server in 0.17s
+2023.11.14 15:15:07 INFO  compiling server (1 scala source)
+2023.11.14 15:15:07 INFO  time: compiled server in 0.12s
+2023.11.14 15:17:33 INFO  compiling server (1 scala source)
+2023.11.14 15:17:33 INFO  time: compiled server in 0.14s
+2023.11.14 15:17:44 INFO  compiling server (1 scala source)
+2023.11.14 15:17:44 INFO  time: compiled server in 0.13s
+2023.11.14 15:18:44 INFO  compiling server (1 scala source)
+2023.11.14 15:18:44 INFO  time: compiled server in 0.19s
+2023.11.14 15:19:09 INFO  compiling server (1 scala source)
+2023.11.14 15:19:09 INFO  time: compiled server in 0.15s
+2023.11.14 15:20:01 INFO  compiling server (1 scala source)
+2023.11.14 15:20:01 INFO  time: compiled server in 0.13s
+2023.11.14 15:23:02 INFO  compiling server (1 scala source)
+2023.11.14 15:23:02 INFO  time: compiled server in 0.13s
+2023.11.14 15:24:54 INFO  compiling server (1 scala source)
+2023.11.14 15:24:54 INFO  time: compiled server in 0.15s
+2023.11.14 15:30:12 INFO  Bloop uses C:\Program Files\Java\jre-1.8 defined at C:\Users\fires\.bloop\bloop.json
+2023.11.14 15:30:12 INFO  tracing is disabled for protocol BSP, to enable tracing of incoming and outgoing JSON messages create an empty file at C:\Users\fires\jobsiteProject\.metals\bsp.trace.json or C:\Users\fires\AppData\Local\scalameta\metals\cache\bsp.trace.json
+2023.11.14 15:30:13 INFO  Connected to Build server: Bloop v1.5.11
+2023.11.14 15:30:13 INFO  Bloop uses C:\Program Files\Java\jre-1.8 defined at C:\Users\fires\.bloop\bloop.json
+2023.11.14 15:30:13 INFO  Bloop uses C:\Program Files\Java\jre-1.8 defined at C:\Users\fires\.bloop\bloop.json
+2023.11.14 15:30:13 INFO  Bloop uses C:\Program Files\Java\jre-1.8 defined at C:\Users\fires\.bloop\bloop.json
+2023.11.14 15:30:13 INFO  Bloop uses C:\Program Files\Java\jre-1.8 defined at C:\Users\fires\.bloop\bloop.json
+2023.11.14 15:30:13 INFO  tracing is disabled for protocol BSP, to enable tracing of incoming and outgoing JSON messages create an empty file at C:\Users\fires\jobsiteProject\project\project\.metals\bsp.trace.json or C:\Users\fires\AppData\Local\scalameta\metals\cache\bsp.trace.json
+2023.11.14 15:30:13 INFO  tracing is disabled for protocol BSP, to enable tracing of incoming and outgoing JSON messages create an empty file at C:\Users\fires\jobsiteProject\project\.metals\bsp.trace.json or C:\Users\fires\AppData\Local\scalameta\metals\cache\bsp.trace.json
+2023.11.14 15:30:13 INFO  tracing is disabled for protocol BSP, to enable tracing of incoming and outgoing JSON messages create an empty file at C:\Users\fires\jobsiteProject\project\.metals\bsp.trace.json or C:\Users\fires\AppData\Local\scalameta\metals\cache\bsp.trace.json
+2023.11.14 15:30:13 INFO  tracing is disabled for protocol BSP, to enable tracing of incoming and outgoing JSON messages create an empty file at C:\Users\fires\jobsiteProject\project\project\.metals\bsp.trace.json or C:\Users\fires\AppData\Local\scalameta\metals\cache\bsp.trace.json
+2023.11.14 15:30:13 INFO  time: Imported build in 0.17s
+2023.11.14 15:30:27 INFO  time: indexed workspace in 14s
+2023.11.14 15:30:28 INFO  Generated JavaScript file 'C:\Users\fires\jobsiteProject\.bloop\client\client-test.js'
+2023.11.14 15:30:28 ERROR Build server error: Cannot discover test frameworks, missing node_modules in test project, expected them at C:\Users\fires\jobsiteProject\client\node_modules
+2023.11.14 15:30:28 INFO  Generated JavaScript file 'C:\Users\fires\jobsiteProject\.bloop\sharedJS\sharedJS-test.js'
+2023.11.14 15:30:28 ERROR Build server error: Cannot discover test frameworks, missing node_modules in test project, expected them at C:\Users\fires\jobsiteProject\shared\.js\node_modules
+2023.11.14 15:40:19 INFO  compiling server (1 scala source)
+2023.11.14 15:40:19 INFO  time: compiled server in 0.14s
+2023.11.14 15:40:21 INFO  Shutting down server
+2023.11.14 15:40:21 INFO  shutting down Metals
+2023.11.14 15:40:21 INFO  Shut down connection with build server.
+2023.11.14 15:40:21 INFO  Shut down connection with build server.
+2023.11.14 15:40:21 INFO  Shut down connection with build server.
+Nov 14, 2023 3:40:21 PM org.eclipse.lsp4j.jsonrpc.RemoteEndpoint notify
+INFO: Failed to send notification message.
+org.eclipse.lsp4j.jsonrpc.JsonRpcException: java.nio.channels.ClosedChannelException
+	at org.eclipse.lsp4j.jsonrpc.json.StreamMessageConsumer.consume(StreamMessageConsumer.java:72)
+	at scala.meta.internal.metals.RequestMonitorImpl$$anon$1.consume(ServerLivenessMonitor.scala:41)
+	at org.eclipse.lsp4j.jsonrpc.RemoteEndpoint.notify(RemoteEndpoint.java:126)
+	at org.eclipse.lsp4j.jsonrpc.RemoteEndpoint.sendCancelNotification(RemoteEndpoint.java:180)
+	at org.eclipse.lsp4j.jsonrpc.RemoteEndpoint$1.cancel(RemoteEndpoint.java:150)
+	at scala.meta.internal.metals.BuildServerConnection.$anonfun$register$2(BuildServerConnection.scala:361)
+	at scala.runtime.java8.JFunction0$mcZ$sp.apply(JFunction0$mcZ$sp.scala:17)
+	at scala.util.Try$.apply(Try.scala:210)
+	at scala.meta.internal.metals.BuildServerConnection.$anonfun$register$1(BuildServerConnection.scala:361)
+	at scala.meta.internal.metals.Cancelable$$anon$1.cancel(Cancelable.scala:18)
+	at scala.meta.internal.metals.Cancelable$.$anonfun$cancelAll$1(Cancelable.scala:29)
+	at scala.collection.immutable.List.foreach(List.scala:333)
+	at scala.meta.internal.metals.Cancelable$.cancelAll(Cancelable.scala:28)
+	at scala.meta.internal.metals.MutableCancelable.cancel(MutableCancelable.scala:25)
+	at scala.meta.internal.metals.BuildServerConnection.cancel(BuildServerConnection.scala:301)
+	at scala.meta.internal.metals.BuildServerConnection.$anonfun$shutdown$1(BuildServerConnection.scala:139)
+	at scala.meta.internal.metals.BuildServerConnection.$anonfun$shutdown$1$adapted(BuildServerConnection.scala:131)
+	at scala.concurrent.impl.Promise$Transformation.run(Promise.scala:467)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1136)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:635)
+	at java.base/java.lang.Thread.run(Thread.java:833)
+Caused by: java.nio.channels.ClosedChannelException
+	at java.base/sun.nio.ch.SocketChannelImpl.ensureOpenAndConnected(SocketChannelImpl.java:215)
+	at java.base/sun.nio.ch.SocketChannelImpl.write(SocketChannelImpl.java:527)
+	at java.base/sun.nio.ch.SinkChannelImpl.write(SinkChannelImpl.java:123)
+	at java.base/java.nio.channels.Channels.writeFullyImpl(Channels.java:74)
+	at java.base/java.nio.channels.Channels.writeFully(Channels.java:93)
+	at java.base/java.nio.channels.Channels$1.write(Channels.java:171)
+	at java.base/java.io.OutputStream.write(OutputStream.java:127)
+	at java.base/java.nio.channels.Channels$1.write(Channels.java:151)
+	at scala.meta.internal.metals.ClosableOutputStream.write(ClosableOutputStream.scala:26)
+	at java.base/java.io.FilterOutputStream.write(FilterOutputStream.java:137)
+	at java.base/java.io.FilterOutputStream.write(FilterOutputStream.java:108)
+	at org.eclipse.lsp4j.jsonrpc.json.StreamMessageConsumer.consume(StreamMessageConsumer.java:67)
+	... 20 more
+
+2023.11.14 15:40:21 INFO  Cancelling compilation on Bloop server
+2023.11.14 15:40:21 INFO  Exiting server
+2023.11.16 14:36:16 INFO  Started: Metals version 1.1.0 in folders 'C:\Users\fires\jobsiteProject' for client Visual Studio Code 1.84.2.
+2023.11.16 14:36:18 INFO  Attempting to connect to the build server...
+2023.11.16 14:36:18 INFO  Bloop uses C:\Program Files\Java\jre-1.8 defined at C:\Users\fires\.bloop\bloop.json
+2023.11.16 14:36:18 INFO  skipping build import with status 'Installed'
+2023.11.16 14:36:26 INFO  tracing is disabled for protocol BSP, to enable tracing of incoming and outgoing JSON messages create an empty file at C:\Users\fires\jobsiteProject\.metals\bsp.trace.json or C:\Users\fires\AppData\Local\scalameta\metals\cache\bsp.trace.json
+2023.11.16 14:36:26 INFO  Attempting to connect to the build server...
+2023.11.16 14:36:26 INFO  Bloop uses C:\Program Files\Java\jre-1.8 defined at C:\Users\fires\.bloop\bloop.json
+2023.11.16 14:36:26 INFO  Attempting to connect to the build server...
+2023.11.16 14:36:26 INFO  Bloop uses C:\Program Files\Java\jre-1.8 defined at C:\Users\fires\.bloop\bloop.json
+2023.11.16 14:36:26 INFO  tracing is disabled for protocol BSP, to enable tracing of incoming and outgoing JSON messages create an empty file at C:\Users\fires\jobsiteProject\project\project\.metals\bsp.trace.json or C:\Users\fires\AppData\Local\scalameta\metals\cache\bsp.trace.json
+2023.11.16 14:36:27 INFO  tracing is disabled for protocol BSP, to enable tracing of incoming and outgoing JSON messages create an empty file at C:\Users\fires\jobsiteProject\project\.metals\bsp.trace.json or C:\Users\fires\AppData\Local\scalameta\metals\cache\bsp.trace.json
+2023.11.16 14:36:27 INFO  time: Connected to build server in 9.21s
+2023.11.16 14:36:27 INFO  Connected to Build server: Bloop v1.5.11
+2023.11.16 14:36:27 INFO  time: Imported build in 0.39s
+2023.11.16 14:36:43 INFO  time: indexed workspace in 15s
+2023.11.16 14:36:47 INFO  Generated JavaScript file 'C:\Users\fires\jobsiteProject\.bloop\client\client-test.js'
+2023.11.16 14:36:47 ERROR Build server error: Cannot discover test frameworks, missing node_modules in test project, expected them at C:\Users\fires\jobsiteProject\client\node_modules
+2023.11.16 14:36:48 INFO  Generated JavaScript file 'C:\Users\fires\jobsiteProject\.bloop\sharedJS\sharedJS-test.js'
+2023.11.16 14:36:48 ERROR Build server error: Cannot discover test frameworks, missing node_modules in test project, expected them at C:\Users\fires\jobsiteProject\shared\.js\node_modules
+2023.11.16 14:39:29 INFO  compiling server (1 scala source)
+2023.11.16 14:39:32 INFO  time: compiled server in 2.11s
+2023.11.16 14:39:45 INFO  compiling server (1 scala source)
+2023.11.16 14:39:45 INFO  time: compiled server in 0.54s
+Exception in thread "metals-watch-callback-thread" java.nio.file.NoSuchFileException: C:\Users\fires\jobsiteProject\server\target\scala-2.13\twirl\main\views\html\company.template.scala
+	at java.base/sun.nio.fs.WindowsException.translateToIOException(WindowsException.java:85)
+	at java.base/sun.nio.fs.WindowsException.rethrowAsIOException(WindowsException.java:103)
+	at java.base/sun.nio.fs.WindowsException.rethrowAsIOException(WindowsException.java:108)
+	at java.base/sun.nio.fs.WindowsFileSystemProvider.newByteChannel(WindowsFileSystemProvider.java:236)
+	at java.base/java.nio.file.Files.newByteChannel(Files.java:380)
+	at java.base/java.nio.file.Files.newByteChannel(Files.java:432)
+	at java.base/java.nio.file.Files.readAllBytes(Files.java:3288)
+	at scala.meta.internal.io.PlatformFileIO$.slurp(PlatformFileIO.scala:45)
+	at scala.meta.internal.io.FileIO$.slurp(FileIO.scala:24)
+	at scala.meta.internal.metals.MetalsLspService.$anonfun$onChange$1(MetalsLspService.scala:1331)
+	at scala.meta.internal.metals.MetalsLspService.$anonfun$onChange$1$adapted(MetalsLspService.scala:1330)
+	at scala.collection.immutable.List.foreach(List.scala:333)
+	at scala.meta.internal.metals.MetalsLspService.onChange(MetalsLspService.scala:1330)
+	at scala.meta.internal.metals.MetalsLspService.didChangeWatchedFiles(MetalsLspService.scala:1306)
+	at scala.meta.internal.metals.MetalsLspService.$anonfun$fileWatcher$3(MetalsLspService.scala:266)
+	at scala.meta.internal.metals.MetalsLspService.$anonfun$fileWatcher$3$adapted(MetalsLspService.scala:265)
+	at scala.meta.internal.metals.watcher.FileWatcher$$anon$1.loop(FileWatcher.scala:199)
+	at scala.meta.internal.metals.watcher.FileWatcher$$anon$1.run(FileWatcher.scala:203)
+Nov 16, 2023 2:46:28 PM org.eclipse.lsp4j.jsonrpc.services.GenericEndpoint notify
+INFO: Unsupported notification method: $/setTrace
+2023.11.16 14:47:03 ERROR Build server error: No project associated with Uri(file:/C:/Users/fires/jobsiteProject/server/?id=server)
+2023.11.16 14:47:03 INFO  {
+  "jsonrpc": "2.0",
+  "id": "29",
+  "error": {
+    "code": -32600,
+    "message": "No project associated with Uri(file:/C:/Users/fires/jobsiteProject/server/?id\u003dserver)"
+  }
+}
