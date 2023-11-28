@@ -9,5 +9,5 @@ object TigerHireModel {
         users.get(username).map(_ == password).getOrElse(false)
     }
 
-    def createUser(email: String username: String, password1: String, password2: String): Boolean = ???
+    def createUser(email: String, username: String, password1: String, password2: String): Boolean = ???
 }

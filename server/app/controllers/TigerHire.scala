@@ -5,10 +5,10 @@ import javax.inject._
 import play.api.mvc._
 
 @Singleton
-class Application @Inject()(cc: ControllerComponents) extends AbstractController(cc) {
+class TigerHire @Inject()(cc: ControllerComponents) extends AbstractController(cc) {
 
   def index = Action {
-    Ok(views.html.index(SharedMessages.itWorks))
+    Ok(views.html.index())
   }
 
   def login = Action {
@@ -19,23 +19,31 @@ class Application @Inject()(cc: ControllerComponents) extends AbstractController
     Ok(views.html.newUser())
   }
 
-  def profile = ???
+  def profile = Action {
+    Ok(views.html.profile())
+  }
 
-  def favorites = ???
+  def favorites = TODO
 
-  def job = ???
+  def job = TODO
 
-  def applicationPage = ???
+  def applicationPage = TODO
 
-  def submitApplication = ???
+  def submitApplication = TODO
 
-  def company = ???
+  def company = TODO
 
-  def createJobPage = ???
+  def createJobPage = TODO
 
-  def submitJobPosting = ???
+  def submitJobPosting = TODO
 
-  def inbox = ???
+  def inbox = TODO
 
-  def sendMessage = ???
+  def sendMessage = TODO
+
+  def validateLogin = TODO
+
+  def createNewUser = TODO
+
+  def updateProfile = TODO
 }
