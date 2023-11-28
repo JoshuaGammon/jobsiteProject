@@ -1,4 +1,0 @@
-[0m[[0m[31merror[0m] [0m[0m/users/jgammon1/jobsiteProject/server/app/views/index.scala.html:7:31: not found: value message[0m
-[0m[[0m[31merror[0m] [0m[0m    <li>Play shouts out: <em>@message</em></li>[0m
-[0m[[0m[31merror[0m] [0m[0m                              ^[0m
-[0m[[0m[31merror[0m] [0m[0mone error found[0m
