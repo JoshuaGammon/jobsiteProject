@@ -1,5 +1,19 @@
-@()
+@(name: String, pronouns: String, bio: String, education: String)
 
 @main("Profile") {
-    <h4>Profile page</h4>
+    <div class="profile">
+        <h4>Profile page</h4>
+        <div>
+            <strong>Name:</strong> @name
+        </div>
+        <div>
+            <strong>Pronouns:</strong> @pronouns
+        </div>
+        <div>
+            <strong>Bio:</strong> @bio
+        </div>
+        <div>
+            <strong>Education:</strong> @education
+        </div>
+    </div>
 }

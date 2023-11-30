@@ -20,7 +20,12 @@ class TigerHire @Inject()(cc: ControllerComponents) extends AbstractController(c
   }
 
   def profile = Action {
-    Ok(views.html.profile())
+    val name = "Mark Lewis"
+    val pronouns = "He/Him"
+    val bio = "Simulator of planetary rings, Scala zealot, avid roller skater, and general lover of programming and technology."
+    val education = "PhD, Roller Derbying -- RollerCade University"
+
+    Ok(views.html.profile(name, pronouns, bio, education))
   }
 
   def favorites = TODO
