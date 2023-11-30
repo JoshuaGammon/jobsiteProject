@@ -2,15 +2,15 @@
 
 @main("Profile") {
     <link rel="stylesheet" type="text/css" href="@routes.Assets.versioned("stylesheets/main.css")">
-    <div class="profile-container">
-        <h3 class="profile-heading">@name (@pronouns)</h3>
-        <div class="profile-info">
+    <div class="info-container">
+        <h3 class="text-heading">@name (@pronouns)</h3>
+        <div class="text-info">
             <strong>Bio:</strong> @bio
         </div>
-        <div class="profile-info">
+        <div class="text-info">
             <strong>Education:</strong> @education
         </div>
-        <div class="profile-info">
+        <div class="text-info">
             <strong>Experience:</strong> @experience
         </div>
     </div>
