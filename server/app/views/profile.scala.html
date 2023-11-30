@@ -1,20 +1,17 @@
-@(name: String, pronouns: String, bio: String, education: String)
+@(name: String, pronouns: String, bio: String, education: String, experience: String)
 
 @main("Profile") {
     <link rel="stylesheet" type="text/css" href="@routes.Assets.versioned("stylesheets/main.css")">
     <div class="profile-container">
-        <h4 class="profile-heading">Profile page</h4>
-        <div class="profile-info">
-            <strong>Name:</strong> @name
-        </div>
-        <div class="profile-info">
-            <strong>Pronouns:</strong> @pronouns
-        </div>
+        <h3 class="profile-heading">@name (@pronouns)</h3>
         <div class="profile-info">
             <strong>Bio:</strong> @bio
         </div>
         <div class="profile-info">
             <strong>Education:</strong> @education
+        </div>
+        <div class="profile-info">
+            <strong>Experience:</strong> @experience
         </div>
     </div>
 }
