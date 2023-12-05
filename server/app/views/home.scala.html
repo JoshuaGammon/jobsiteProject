@@ -1,1 +1,13 @@
+@* home Template File *@
+@(jobPosts: Seq[String])(implicit request: MessagesRequestHeader, flash: Flash)
 
+@main("home") {
+    <h4>Home page</h4>
+
+    <ul>
+        @for((jobPost, i) <- jobPosts.zipWithIndex) {
+            <li>@jobPost</li>
+            
+        }
+    </ul>
+}
