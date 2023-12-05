@@ -56,7 +56,7 @@ class TigerHire @Inject()(cc: ControllerComponents) extends AbstractController(c
     val location = "Morrisville, NC"
     val remoteType = "Hybrid"
 
-    Ok(views.html.applicationPage(jobTitle, company, location, remoteType, salary))
+    Ok(views.html.applicationPage(jobTitle, company, location, remoteType))
   }
 
   def submitApplication = TODO
