@@ -74,7 +74,11 @@ class TigerHire @Inject()(cc: ControllerComponents) extends AbstractController(c
 
   def submitJobPosting = TODO
 
-  def inbox = TODO
+  def inbox = Action {
+    val username = "mlewis"
+    val messages = List(("amazon", "We want you to work at Amazon!"))
+    Ok(views.html.inbox(username, messages))
+  }
 
   def sendMessage = TODO
 
