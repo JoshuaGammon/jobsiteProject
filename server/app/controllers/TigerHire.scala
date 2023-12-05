@@ -54,7 +54,14 @@ class TigerHire @Inject()(cc: ControllerComponents) extends AbstractController(c
 
   def submitApplication = TODO
 
-  def company = TODO
+  def company = Action {
+    val name = "Mastercard"
+    val purpose = "We work to connect and power an inclusive digital economy that benefits everyone, everywhere by making transactions safe, simple, smart and accessible. Using secure data and networks, partnerships and passion, our innovations and solutions help individuals, financial institutions, governments and businesses realize their greatest potential. Our decency quotient, or DQ, drives our culture and everything we do inside and outside of our company."
+    val companyType = "Payment Processing and Technology"
+    val dateFounded = "1966"
+
+    Ok(views.html.company(name, purpose, companyType, dateFounded))
+  }
 
   def createJobPage = TODO
 
