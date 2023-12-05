@@ -50,7 +50,14 @@ class TigerHire @Inject()(cc: ControllerComponents) extends AbstractController(c
     Ok(views.html.job(jobTitle, company, location, remoteType, salary, description, qualifications))
 }
 
-  def applicationPage = TODO
+  def applicationPage = Action {
+    val jobTitle = "Software Engineer"
+    val company = "Mastercard"
+    val location = "Morrisville, NC"
+    val remoteType = "Hybrid"
+
+    Ok(views.html.applicationPage(jobTitle, company, location, remoteType, salary))
+  }
 
   def submitApplication = TODO
 
