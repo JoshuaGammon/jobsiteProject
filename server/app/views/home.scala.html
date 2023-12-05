@@ -1,6 +1,21 @@
 @* home Template File *@
 @(jobPosts: Seq[String])(implicit request: MessagesRequestHeader, flash: Flash)
 
+<div class="search-bar">
+    <form action="#" method="get">
+        <input type="text" name="search" placeholder="Search...">
+        <input type="submit" value="Search">
+    </form>
+
+    <select name="category">
+        <option value="">All Categories</option>
+        @for(category <- categories) {
+            <option value="@category">@category</option>
+        }
+    </select>
+    
+</div>
+
 @main("home") {
     <h4>Home page</h4>
 
