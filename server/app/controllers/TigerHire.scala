@@ -88,10 +88,10 @@ class TigerHire @Inject()(cc: MessagesControllerComponents) extends MessagesAbst
         val usernameOption = request.session.get("username")
         usernameOption.map { username =>
             val jobPosts = models.TigerHireModel.getJobPost(username)
-            val jobTitle = "Software Engineer"
-            val company = "Mastercard"
-            val location = "Morrisville, NC"
-            val remoteType = "Hybrid"
+            val jobTitle = List("Software Engineer","Data Engineer")
+            val company = List("Mastercard","Visa")
+            val location = List("Morrisville, NC","Austin, TX")
+            val remoteType = List("Hybrid", "Remote")
             val salary = "$100,000 - $120,000 per year"
             val description = "At Mastercard, Software Engineers work directly with Software Development Engineers in small teams and are deeply engaged throughout the entire development process. They are directly responsible for ensuring great products and analytics for our clients. Innovation is also a key facet in the role. Software Quality Engineers are expected to never settle for the status quo in how Mastercard approaches product quality and always look for ways to accelerate or improve the testing tactics taken."
             val qualifications = List(
@@ -103,11 +103,28 @@ class TigerHire @Inject()(cc: MessagesControllerComponents) extends MessagesAbst
             "Attention to detail and organizational skill",
             "Interest in learning and working with new technologies"
             )
-            Ok(views.html.home(jobPosts,jobTitle,company,location,remoteType,salary,description,qualifications))
+            Ok(views.html.home(jobPosts,jobTitle,company,location,remoteType))
         }.getOrElse(Redirect(routes.TigerHire.login))
     }
 
-  
+  def searchJobTitle = Action { implicit request =>
+    val query = request.getQueryString("search").getOrElse("")
+    val company = List("Mastercard","Visa")
+    val location = List("Morrisville, NC","Austin, TX")
+    val remoteType = List("Hybrid", "Remote")
+    val jobTitles = List("Software Engineer", "Data Intern")
+    val filteredJobTitles = jobTitles.filter(_.toLowerCase.contains(query.toLowerCase))
+    // val filteredCompanies = company.filter(_.toLowerCase.contains(query.toLowerCase))
+    // val filteredLocation = location.filter(_.toLowerCase.contains(query.toLowerCase))
+    // val filteredRemoteType = remoteType.filter(_.toLowerCase.contains(query.toLowerCase))
+    val usernameOption = request.session.get("username")
+    usernameOption.map { username =>
+      val jobPosts = models.TigerHireModel.getJobPost(username)
+
+      Ok(views.html.home(jobPosts, filteredJobTitles,company,location,remoteType))
+    }.getOrElse(Redirect(routes.TigerHire.login))
+  }
+
  def profile = Action {
    // val name = "Mark Lewis"
    // val pronouns = "He/Him"

@@ -7,3 +7,13 @@
     background-color: #f9f9f9;
     box-shadow: 0 0 10px #800000;
 }
+
+.search-box{
+    max-width: 600px;
+    margin: 20px auto;
+    padding: 60px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+    box-shadow: 0 0 10px #800000;
+}

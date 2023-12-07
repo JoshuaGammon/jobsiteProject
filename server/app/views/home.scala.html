@@ -1,8 +1,8 @@
 @* home Template File *@
-@(jobPosts: Seq[String],jobTitle: String, company: String, location: String, remoteType: String, salary: String, description: String, qualifications: List[String])(implicit request: MessagesRequestHeader, flash: Flash)
-
+@(jobPosts: Seq[String],jobTitle: List[String], company: List[String], location: List[String], remoteType: List[String])(implicit request: MessagesRequestHeader, flash: Flash)
+<div class = "search-box">
 <div class="search-bar">
-    <form action="#" method="get">
+    <form action="@routes.TigerHire.searchJobTitle" method="get">
         <input type="text" name="search" placeholder="Search...">
         <input type="submit" value="Search">
     </form>
@@ -10,7 +10,7 @@
 
     
 </div>
-
+</div>
 @main("home") {
     <h4>Home page</h4>
 
@@ -23,20 +23,28 @@
 
     </ul>
     <link rel="stylesheet" type="text/css" href="@routes.Assets.versioned("stylesheets/main.css")">
+ @for(i<- jobTitle.indices){
+
     <div class="info-container">
+        
         <div class="text-info">
-          <h1> @jobTitle</h1>  
+           
+            <h1>@jobTitle(i)</h1> 
+            
+  
+        </div>    
+
+        <div class="text-info">
+          @company(i)
         </div>
         <div class="text-info">
-          @company
+         @location(i)
         </div>
         <div class="text-info">
-         @location
-        </div>
-        <div class="text-info">
-         @remoteType
+         @remoteType(i)
         </div>
 
         </div>
     </div>
+}
 }
