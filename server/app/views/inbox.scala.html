@@ -1,0 +1,24 @@
+@(username: String, messages: Seq[(String, String)])
+
+@main("Inbox") {
+
+  <h2>Welcome to your inbox, @username!</h2>
+
+  <h4>Messages:</h4>
+  <ul>
+    @for((sender, message) <- messages) {
+        <li>@sender: @message</li>
+    }
+  </ul>
+
+  <br>
+
+  <h4>Outbox:</h4>
+  <form method="post" action="sendMessage">
+    Recepient's username: <input type="text" name="recepient"></input>
+    <br>
+    Message: <input type="text" name="message"></input>
+    <br>
+    <input type="submit"></input>
+  </form>
+}
