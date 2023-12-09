@@ -16,24 +16,30 @@ object TigerHireModel {
 */
 
 class TigerHireModel(db: Database)(implicit ec: ExecutionContext) {
-    def validateUser(username: String, password: String): Future[Boolean] = {
+    def validateApplicant(username: String, password: String): Future[Boolean] = {
         val matches = db.run(Applicants.filter(ApplicantsRow => ApplicantsRow.username === username && ApplicantsRow.password === password).result)
-        matches.map(userRows => userRows.nonEmpty)
+        matches.map(ApplicantsRows => ApplicantsRows.nonEmpty)
+    }
+
+    def validateRecruiters(username: String, password: String): Future[Boolean] = {
+        val matches = db.run(Recruiters.filter(RecruitersRow => RecruitersRow.username === username && RecruitersRow.password === password).result)
+        matches.map(RecruitersRows => RecruitersRows.nonEmpty)
     }
 
     def createUser(username: String, password: String): Future[Boolean] = {
-        db.run(Users += UsersRow(-1, username, password)).map(addCount => addCount > 0)
+        db.run(Applicants += ApplicantsRow(-1, username, password)).map(addCount => addCount > 0)
     }
 
-    def getJobs(): Future[Seq[String]] = { //just gets list of all job titles (dk how db looks yet)
-        db.run(
-            (for {
-                job <- Jobs
-            } yield {
-                job.title
-            }).result
-        )
-    }
+    // def getCompanyJobs(name: String): Future[Seq[String]] = { //just gets list of all job titles (dk how db looks yet)
+    //     db.run(
+    //         (for {
+    //             company <- Company if company.name === name
+    //             job <- Jobs if job.cId === company.id
+    //         } yield {
+    //             job.salary
+    //         }).result
+    //     )
+    // }
 }
 /*
     def createUser(username: String, password: String): Boolean = {

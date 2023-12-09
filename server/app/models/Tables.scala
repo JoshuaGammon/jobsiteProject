@@ -1,9 +1,9 @@
 package models
 // AUTO-GENERATED Slick data model
 /** Stand-alone Slick data model for immediate use */
-object Tables extends {
+object Tables extends Tables {
   val profile = slick.jdbc.PostgresProfile
-} with Tables
+}
 
 /** Slick data model trait for extension, choice of backend or usage in the cake pattern. (Make sure to initialize this late.) */
 trait Tables {
@@ -31,7 +31,7 @@ trait Tables {
   }
   /** Table description of table applicants. Objects of this class serve as prototypes for rows in queries. */
   class Applicants(_tableTag: Tag) extends profile.api.Table[ApplicantsRow](_tableTag, "applicants") {
-    def * = (id, username, password, jId) <> (ApplicantsRow.tupled, ApplicantsRow.unapply)
+    def * = (id, username, password, jId).<>(ApplicantsRow.tupled, ApplicantsRow.unapply)
     /** Maps whole row to an option. Useful for outer joins. */
     def ? = ((Rep.Some(id), Rep.Some(username), Rep.Some(password), jId)).shaped.<>({r=>import r._; _1.map(_=> ApplicantsRow.tupled((_1.get, _2.get, _3.get, _4)))}, (_:Any) =>  throw new Exception("Inserting into ? projection not supported."))
 
@@ -66,7 +66,7 @@ trait Tables {
   }
   /** Table description of table a_profile. Objects of this class serve as prototypes for rows in queries. */
   class AProfile(_tableTag: Tag) extends profile.api.Table[AProfileRow](_tableTag, "a_profile") {
-    def * = (description, education, name, university, email, pronouns, aId) <> (AProfileRow.tupled, AProfileRow.unapply)
+    def * = (description, education, name, university, email, pronouns, aId).<>(AProfileRow.tupled, AProfileRow.unapply)
 
     /** Database column description SqlType(varchar), Length(2000,true), Default(None) */
     val description: Rep[Option[String]] = column[Option[String]]("description", O.Length(2000,varying=true), O.Default(None))
@@ -103,7 +103,7 @@ trait Tables {
   }
   /** Table description of table company. Objects of this class serve as prototypes for rows in queries. */
   class Company(_tableTag: Tag) extends profile.api.Table[CompanyRow](_tableTag, "company") {
-    def * = (headquarters, name, purpose, companyType, id) <> (CompanyRow.tupled, CompanyRow.unapply)
+    def * = (headquarters, name, purpose, companyType, id).<>(CompanyRow.tupled, CompanyRow.unapply)
     /** Maps whole row to an option. Useful for outer joins. */
     def ? = ((headquarters, name, purpose, companyType, Rep.Some(id))).shaped.<>({r=>import r._; _5.map(_=> CompanyRow.tupled((_1, _2, _3, _4, _5.get)))}, (_:Any) =>  throw new Exception("Inserting into ? projection not supported."))
 
@@ -133,7 +133,7 @@ trait Tables {
   }
   /** Table description of table items. Objects of this class serve as prototypes for rows in queries. */
   class Items(_tableTag: Tag) extends profile.api.Table[ItemsRow](_tableTag, "items") {
-    def * = (itemId, userId, text) <> (ItemsRow.tupled, ItemsRow.unapply)
+    def * = (itemId, userId, text).<>(ItemsRow.tupled, ItemsRow.unapply)
     /** Maps whole row to an option. Useful for outer joins. */
     def ? = ((Rep.Some(itemId), userId, text)).shaped.<>({r=>import r._; _1.map(_=> ItemsRow.tupled((_1.get, _2, _3)))}, (_:Any) =>  throw new Exception("Inserting into ? projection not supported."))
 
@@ -156,18 +156,19 @@ trait Tables {
    *  @param remote Database column remote SqlType(varchar), Length(20,true), Default(None)
    *  @param hours Database column hours SqlType(varchar), Length(100,true), Default(None)
    *  @param cId Database column c_id SqlType(int4), Default(None)
-   *  @param id Database column id SqlType(serial), AutoInc, PrimaryKey */
-  case class JobsRow(salary: Option[String] = None, location: Option[String] = None, remote: Option[String] = None, hours: Option[String] = None, cId: Option[Int] = None, id: Int)
+   *  @param id Database column id SqlType(serial), AutoInc, PrimaryKey
+   *  @param name Database column name SqlType(varchar), Length(50,true) */
+  case class JobsRow(salary: Option[String] = None, location: Option[String] = None, remote: Option[String] = None, hours: Option[String] = None, cId: Option[Int] = None, id: Int, name: String)
   /** GetResult implicit for fetching JobsRow objects using plain SQL queries */
-  implicit def GetResultJobsRow(implicit e0: GR[Option[String]], e1: GR[Option[Int]], e2: GR[Int]): GR[JobsRow] = GR{
+  implicit def GetResultJobsRow(implicit e0: GR[Option[String]], e1: GR[Option[Int]], e2: GR[Int], e3: GR[String]): GR[JobsRow] = GR{
     prs => import prs._
-    JobsRow.tupled((<<?[String], <<?[String], <<?[String], <<?[String], <<?[Int], <<[Int]))
+    JobsRow.tupled((<<?[String], <<?[String], <<?[String], <<?[String], <<?[Int], <<[Int], <<[String]))
   }
   /** Table description of table jobs. Objects of this class serve as prototypes for rows in queries. */
   class Jobs(_tableTag: Tag) extends profile.api.Table[JobsRow](_tableTag, "jobs") {
-    def * = (salary, location, remote, hours, cId, id) <> (JobsRow.tupled, JobsRow.unapply)
+    def * = (salary, location, remote, hours, cId, id, name).<>(JobsRow.tupled, JobsRow.unapply)
     /** Maps whole row to an option. Useful for outer joins. */
-    def ? = ((salary, location, remote, hours, cId, Rep.Some(id))).shaped.<>({r=>import r._; _6.map(_=> JobsRow.tupled((_1, _2, _3, _4, _5, _6.get)))}, (_:Any) =>  throw new Exception("Inserting into ? projection not supported."))
+    def ? = ((salary, location, remote, hours, cId, Rep.Some(id), Rep.Some(name))).shaped.<>({r=>import r._; _6.map(_=> JobsRow.tupled((_1, _2, _3, _4, _5, _6.get, _7.get)))}, (_:Any) =>  throw new Exception("Inserting into ? projection not supported."))
 
     /** Database column salary SqlType(varchar), Length(50,true), Default(None) */
     val salary: Rep[Option[String]] = column[Option[String]]("salary", O.Length(50,varying=true), O.Default(None))
@@ -181,6 +182,8 @@ trait Tables {
     val cId: Rep[Option[Int]] = column[Option[Int]]("c_id", O.Default(None))
     /** Database column id SqlType(serial), AutoInc, PrimaryKey */
     val id: Rep[Int] = column[Int]("id", O.AutoInc, O.PrimaryKey)
+    /** Database column name SqlType(varchar), Length(50,true) */
+    val name: Rep[String] = column[String]("name", O.Length(50,varying=true))
 
     /** Foreign key referencing Company (database name jobs_c_id_fkey) */
     lazy val companyFk = foreignKey("jobs_c_id_fkey", cId, Company)(r => Rep.Some(r.id), onUpdate=ForeignKeyAction.NoAction, onDelete=ForeignKeyAction.Cascade)
@@ -201,7 +204,7 @@ trait Tables {
   }
   /** Table description of table recruiters. Objects of this class serve as prototypes for rows in queries. */
   class Recruiters(_tableTag: Tag) extends profile.api.Table[RecruitersRow](_tableTag, "recruiters") {
-    def * = (id, username, password, cId) <> (RecruitersRow.tupled, RecruitersRow.unapply)
+    def * = (id, username, password, cId).<>(RecruitersRow.tupled, RecruitersRow.unapply)
     /** Maps whole row to an option. Useful for outer joins. */
     def ? = ((Rep.Some(id), Rep.Some(username), Rep.Some(password), cId)).shaped.<>({r=>import r._; _1.map(_=> RecruitersRow.tupled((_1.get, _2.get, _3.get, _4)))}, (_:Any) =>  throw new Exception("Inserting into ? projection not supported."))
 
@@ -236,7 +239,7 @@ trait Tables {
   }
   /** Table description of table r_profile. Objects of this class serve as prototypes for rows in queries. */
   class RProfile(_tableTag: Tag) extends profile.api.Table[RProfileRow](_tableTag, "r_profile") {
-    def * = (description, currentPosition, name, location, email, pronouns, rId) <> (RProfileRow.tupled, RProfileRow.unapply)
+    def * = (description, currentPosition, name, location, email, pronouns, rId).<>(RProfileRow.tupled, RProfileRow.unapply)
 
     /** Database column description SqlType(varchar), Length(2000,true), Default(None) */
     val description: Rep[Option[String]] = column[Option[String]]("description", O.Length(2000,varying=true), O.Default(None))
@@ -271,7 +274,7 @@ trait Tables {
   }
   /** Table description of table users. Objects of this class serve as prototypes for rows in queries. */
   class Users(_tableTag: Tag) extends profile.api.Table[UsersRow](_tableTag, "users") {
-    def * = (id, username, password) <> (UsersRow.tupled, UsersRow.unapply)
+    def * = (id, username, password).<>(UsersRow.tupled, UsersRow.unapply)
     /** Maps whole row to an option. Useful for outer joins. */
     def ? = ((Rep.Some(id), Rep.Some(username), Rep.Some(password))).shaped.<>({r=>import r._; _1.map(_=> UsersRow.tupled((_1.get, _2.get, _3.get)))}, (_:Any) =>  throw new Exception("Inserting into ? projection not supported."))
 
