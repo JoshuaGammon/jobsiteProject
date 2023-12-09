@@ -1,11 +1,11 @@
 package models
 
 import collection.mutable
-//import slick.jdbc.PostgresProfile.api._
-//import scala.concurrent.ExecutionContext
-//import models.Tables._
-//import scala.concurrent.Future
-
+import slick.jdbc.PostgresProfile.api._
+import scala.concurrent.ExecutionContext
+import models.Tables._
+import scala.concurrent.Future
+/*
 object TigerHireModel {
     private val users = mutable.Map[String, String]("mlewis" -> "1234") //temporary data while DB in progress
     private val jobPosts = mutable.Map[String, List[String]]("mlewis" -> List("Job Post 1","Job Post 2"))
@@ -13,12 +13,11 @@ object TigerHireModel {
     def validateUser(username: String, password: String): Boolean = {
         users.get(username).map(_ == password).getOrElse(false)
     }
-
-/*
+*/
 
 class TigerHireModel(db: Database)(implicit ec: ExecutionContext) {
     def validateUser(username: String, password: String): Future[Boolean] = {
-        val matches = db.run(Users.filter(userRow => userRow.username === username && userRow.password === password).result)
+        val matches = db.run(Applicants.filter(ApplicantsRow => ApplicantsRow.username === username && ApplicantsRow.password === password).result)
         matches.map(userRows => userRows.nonEmpty)
     }
 
@@ -36,7 +35,7 @@ class TigerHireModel(db: Database)(implicit ec: ExecutionContext) {
         )
     }
 }
-*/
+/*
     def createUser(username: String, password: String): Boolean = {
         if (users.contains(username)) false else {
         users(username) = password
@@ -48,4 +47,4 @@ class TigerHireModel(db: Database)(implicit ec: ExecutionContext) {
         jobPosts.get(username).getOrElse(Nil)
     }
 
-}
+}   */

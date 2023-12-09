@@ -6,16 +6,23 @@ import play.api.mvc._
 import play.api.i18n._
 import play.api.data._ 
 import play.api.data.Forms._
-import models.TigerHireModel
+import models._
+import scala.concurrent.Future
+
+import play.api.db.slick.DatabaseConfigProvider
+import scala.concurrent.ExecutionContext
+import play.api.db.slick.HasDatabaseConfigProvider
+import slick.jdbc.JdbcProfile
+import slick.jdbc.PostgresProfile.api._
 
 case class LoginData(username: String, password: String)
 
 @Singleton
-//class TigerHire @Inject()(cc: ControllerComponents) extends AbstractController(cc) {
-  //private val model = new TigerHireModel(db)
-class TigerHire @Inject()(cc: MessagesControllerComponents) extends MessagesAbstractController(cc) {
+class TigerHire @Inject()(protected val dbConfigProvider: DatabaseConfigProvider, cc: MessagesControllerComponents)(implicit ec: ExecutionContext)
+    extends MessagesAbstractController(cc) with HasDatabaseConfigProvider[JdbcProfile]{
 
-
+  private val model = new TigerHireModel(db)
+  
   def index = Action {
     Ok(views.html.index())
   }
@@ -33,30 +40,32 @@ class TigerHire @Inject()(cc: MessagesControllerComponents) extends MessagesAbst
     Ok(s"$username logged in with $password.")
   }
 
-  def validateLoginPost = Action { implicit request => 
+  def validateLoginPost = Action.async { implicit request => 
     val postVals = request.body.asFormUrlEncoded
     postVals.map { args =>
       val username = args("username").head 
       val password = args("password").head 
-      if(models.TigerHireModel.validateUser(username,password)) {
-        Redirect(routes.TigerHire.jobPostList).withSession("username" -> username)
-      } else {
-        Redirect(routes.TigerHire.login).flashing("error" -> "Invalid username/password combination.")
+      model.validateUser(username,password).map { userExists =>
+        if(userExists){
+          Redirect(routes.TigerHire.jobPostList).withSession("username" -> username)
+        } else {
+          Redirect(routes.TigerHire.login).flashing("error" -> "Invalid username/password combination.")
+        }
       }
-    }.getOrElse(Redirect(routes.TigerHire.login))
+    }.getOrElse(Future.successful(Redirect(routes.TigerHire.login)))
   }
 
-  def validateLoginForm = Action { implicit request =>
-    loginForm.bindFromRequest.fold(
-      formWithError => BadRequest(views.html.login(formWithError)),
-      ld => 
-        if(models.TigerHireModel.validateUser(ld.username,ld.password)) {
-        Redirect(routes.TigerHire.profile).withSession("username" -> ld.username)
-        } else {
-        Redirect(routes.TigerHire.login).flashing("error" -> "Invalid username/password combination.")
-        }
-    )
-  }
+  // def validateLoginForm = Action { implicit request =>
+  //   loginForm.bindFromRequest.fold(
+  //     formWithError => BadRequest(views.html.login(formWithError)),
+  //     ld => 
+  //       if(models.TigerHireModel.validateUser(ld.username,ld.password)) {
+  //       Redirect(routes.TigerHire.profile).withSession("username" -> ld.username)
+  //       } else {
+  //       Redirect(routes.TigerHire.login).flashing("error" -> "Invalid username/password combination.")
+  //       }
+  //   )
+  // }
 
   
   def newUser = Action { implicit request => 
