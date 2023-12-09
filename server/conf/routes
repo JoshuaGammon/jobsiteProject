@@ -5,31 +5,35 @@
 
 GET        /                             controllers.TigerHire.index
 GET        /login                        controllers.TigerHire.login
-GET        /validateGet1                 controllers.TigerHire.validateLoginGet(username,password)
-GET        /newUser                      controllers.TigerHire.createNewUser
+
+# GET        /validateGet1                 controllers.TigerHire.validateLoginGet(username,password)
+# GET        /newUser                      controllers.TigerHire.createNewUser
+
 +nocsrf
-POST       /validatePost1                controllers.TigerHire.validateLoginPost
+POST       /validateApplicantPost                controllers.TigerHire.validateApplicantPost
 +nocsrf
 POST       /createUser                   controllers.TigerHire.createUser
 
-GET        /profile                      controllers.TigerHire.profile
-# GET      /home                         controllers.TigerHire.home
+
+# GET        /profile                      controllers.TigerHire.profile
+# GET        /home                         controllers.TigerHire.home
 GET        /jobPostList                  controllers.TigerHire.jobPostList
-POST       /updateProfile                controllers.TigerHire.updateProfile
-GET        /favorites                    controllers.TigerHire.favorites
-GET        /search                       controllers.TigerHire.searchJobTitle
+# POST       /updateProfile                controllers.TigerHire.updateProfile
+# GET        /favorites                    controllers.TigerHire.favorites
+GET       /search                       controllers.TigerHire.searchJobTitle
 
-GET        /job                          controllers.TigerHire.job
-GET        /apply                        controllers.TigerHire.applicationPage
-POST       /submitApplication            controllers.TigerHire.submitApplication
 
-GET        /company                      controllers.TigerHire.company
+# GET        /job                          controllers.TigerHire.job
+# GET        /apply                        controllers.TigerHire.applicationPage
+# POST       /submitApplication            controllers.TigerHire.submitApplication
 
-GET        /createJob                    controllers.TigerHire.createJobPage
-POST       /submitJobPosting             controllers.TigerHire.submitJobPosting
+# GET        /company                      controllers.TigerHire.company
 
-GET        /inbox                        controllers.TigerHire.inbox
-POST       /sendMessage                  controllers.TigerHire.sendMessage
+# GET        /createJob                    controllers.TigerHire.createJobPage
+# POST       /submitJobPosting             controllers.TigerHire.submitJobPosting
+
+# GET        /inbox                        controllers.TigerHire.inbox
+# POST       /sendMessage                  controllers.TigerHire.sendMessage
 
 # Prefix must match `play.assets.urlPrefix`
 GET        /assets/*file                 controllers.Assets.at(file)

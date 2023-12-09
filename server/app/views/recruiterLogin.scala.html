@@ -4,7 +4,7 @@
 @main("Login") {
     <h2>Login</h2>
 
-    <form method="post" action="@routes.TigerHire.validateApplicantPost">
+    <form method="post" action="@routes.TigerHire.validateLoginPost">
         @helper.CSRF.formField 
         <h3>Login with POST</h3>
         <br>
@@ -15,16 +15,9 @@
         <input type="submit"></input>
     </form>
 
-    <form method="get" action="/newUser">
-        @helper.CSRF.formField 
-        <h3>Create New User</h3>
-        <input type="submit" value = "Create User"></input>
-    </form>
-   
-    <a href = "@routes.TigerHire.recruiterLogin">
-        <button>
-        <h2>Recruiter Login</h2>
-        </button> 
-    </a>
-
+    <a href = "@routes.TigerHire.login">
+    <button>
+    <h2>Applicant Login</h2>
+    </button> 
+</a>
 }
