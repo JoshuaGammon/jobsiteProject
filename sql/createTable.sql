@@ -11,6 +11,7 @@ CREATE TABLE jobs (
     location varchar(20),
     remote varchar(20),
     hours varchar(100),
+    name varchar(50) NOT NULL,
     c_id int4 REFERENCES company(id) ON DELETE CASCADE,
     id SERIAL PRIMARY KEY 
 );
