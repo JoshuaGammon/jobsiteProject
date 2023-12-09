@@ -14,7 +14,17 @@ case class LoginData(username: String, password: String)
 //class TigerHire @Inject()(cc: ControllerComponents) extends AbstractController(cc) {
   //private val model = new TigerHireModel(db)
 class TigerHire @Inject()(cc: MessagesControllerComponents) extends MessagesAbstractController(cc) {
-
+  
+  let jobForm = Form(
+    mapping(
+      "jobTitle" -> nonEmptyText,
+      "companyName" -> nonEmptyText,
+      "location" -> nonEmptyText,
+      "remoteType" -> nonEmptyText,
+      "salary" -> nonEmptyText,
+      "questions" -> seq(text)
+    )(JobPosting.apply)(JobPosting.unapply)
+  )
 
   def index = Action {
     Ok(views.html.index())
@@ -184,9 +194,15 @@ class TigerHire @Inject()(cc: MessagesControllerComponents) extends MessagesAbst
     Ok(views.html.company(name, purpose, companyType, dateFounded))
   }
 
-  def createJobPage = TODO
+  def createJobPage = Action {
+    Ok(views.html.createJobPage(jobForm))
+  }
 
-  def submitJobPosting = TODO
+  def submitJobPosting = Action.async { implicit request =>
+    withSessionUserid { userid =>
+      model.addJobPosting(salary, location, remote, hours, cId, id).map(count => Ok(Json.toJson(count > 0)))
+    }
+  }
 
   def inbox = Action {
     val username = "mlewis"

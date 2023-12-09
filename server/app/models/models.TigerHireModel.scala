@@ -48,4 +48,9 @@ class TigerHireModel(db: Database)(implicit ec: ExecutionContext) {
         jobPosts.get(username).getOrElse(Nil)
     }
 
+    def addJobPosting(userid: Int, task: String): Future[Int] = {
+        db.run(Jobs += JobsRow(salary, location, remote, hours, cId, -1))
+    }
+
 }
+
