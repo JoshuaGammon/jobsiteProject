@@ -194,7 +194,26 @@ class TigerHire @Inject()(cc: MessagesControllerComponents) extends MessagesAbst
     Ok(views.html.inbox(username, messages))
   }
 
-  def sendMessage = TODO
+  // def privateMessageList = Action{ implicit request =>
+  //   val usernameOption = request.session.get("username")
+  //     usernameOption.map{ username =>
+  //       val msgs = models.TigerHireModel.getPrivateMessage(username)
+  //       Ok(views.html.inbox(username,msgs))
+  //     }.getOrElse(views.html.inbox(username,msgs))
+  // }
+
+   def sendMessage = TODO
+  //    Action { implicit request =>val usernameOption = request.session.get("username")
+  //   usernameOption.map{ username => 
+  //     val postVals = request.body.asFormUrlEncoded
+  //     postVals.map { args =>
+  //       val user = args("user").head
+  //       val message = args("newPrivateMessage").head
+  //       models.TigerHireModel.addPrivateMessage(user, s"$username: $message");
+  //       Redirect(routes.TigerHire.inbox)
+  //     }.getOrElse(Redirect(routes.TigerHire.inbox))
+  //   }.getOrElse(Redirect(routes.TigerHire.inbox))
+  //}
 
 
   def validateLogin = TODO
