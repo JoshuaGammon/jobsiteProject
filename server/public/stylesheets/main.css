@@ -1,3 +1,8 @@
+.body {
+    margin: 0;
+    padding: 0;
+}
+
 .info-container {
     max-width: 600px;
     margin: 20px auto;
@@ -122,3 +127,32 @@ button {
 button:hover {
     background-color: #a00101;
 }
+
+.navbar {
+    width: 100%;
+    background-color: maroon;
+    padding: 10px 0;
+    color: white;
+    margin: 0;
+}
+
+.navbar-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.navbar-button {
+    background-color: #a00101;
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    font-size: large;
+    color: white;
+    padding: 10px 15px;
+    border: grey;
+    border-radius: 4px;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
