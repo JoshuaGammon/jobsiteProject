@@ -29,6 +29,10 @@ class TigerHire @Inject()(cc: MessagesControllerComponents) extends MessagesAbst
     Ok(views.html.login(loginForm))
   }
 
+    def recruiterLogin = Action { implicit request =>
+    Ok(views.html.recruiterLogin(loginForm))
+  }
+
   def validateLoginGet(username: String, password: String) = Action {
     Ok(s"$username logged in with $password.")
   }
@@ -45,6 +49,22 @@ class TigerHire @Inject()(cc: MessagesControllerComponents) extends MessagesAbst
       }
     }.getOrElse(Redirect(routes.TigerHire.login))
   }
+
+  //   def validateApplicantPost = Action.async { implicit request => 
+  //   val postVals = request.body.asFormUrlEncoded
+  //   postVals.map { args =>
+  //     val username = args("username").head 
+  //     val password = args("password").head 
+  //     model.validateUser(username,password).map { userExists =>
+  //       if(userExists){
+  //         Redirect(routes.TigerHire.jobPostList).withSession("username" -> username)
+  //       } else {
+  //         Redirect(routes.TigerHire.login).flashing("error" -> "Invalid username/password combination.")
+  //       }
+  //     }
+  //   }.getOrElse(Future.successful(Redirect(routes.TigerHire.login)))
+  // }
+
 
   def validateLoginForm = Action { implicit request =>
     loginForm.bindFromRequest.fold(
