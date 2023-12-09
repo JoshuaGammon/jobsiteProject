@@ -5,8 +5,10 @@
 
 GET        /                             controllers.TigerHire.index
 GET        /login                        controllers.TigerHire.login
+
 # GET        /validateGet1                 controllers.TigerHire.validateLoginGet(username,password)
 # GET        /newUser                      controllers.TigerHire.createNewUser
+
 +nocsrf
 POST       /validateApplicantPost                controllers.TigerHire.validateApplicantPost
 +nocsrf

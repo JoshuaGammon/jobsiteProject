@@ -36,6 +36,10 @@ class TigerHire @Inject()(protected val dbConfigProvider: DatabaseConfigProvider
     Ok(views.html.login(loginForm))
   }
 
+    def recruiterLogin = Action { implicit request =>
+    Ok(views.html.recruiterLogin(loginForm))
+  }
+
   def validateLoginGet(username: String, password: String) = Action {
     Ok(s"$username logged in with $password.")
   }
@@ -219,7 +223,17 @@ class TigerHire @Inject()(protected val dbConfigProvider: DatabaseConfigProvider
 //   }
 
 //   def sendMessage = TODO
-
+     //    Action { implicit request =>val usernameOption = request.session.get("username")
+  //   usernameOption.map{ username => 
+  //     val postVals = request.body.asFormUrlEncoded
+  //     postVals.map { args =>
+  //       val user = args("user").head
+  //       val message = args("newPrivateMessage").head
+  //       models.TigerHireModel.addPrivateMessage(user, s"$username: $message");
+  //       Redirect(routes.TigerHire.inbox)
+  //     }.getOrElse(Redirect(routes.TigerHire.inbox))
+  //   }.getOrElse(Redirect(routes.TigerHire.inbox))
+  //}
 
 //   def validateLogin = TODO
 //   //= Action.async { implicit request => }
