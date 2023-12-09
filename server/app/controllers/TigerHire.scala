@@ -11,7 +11,10 @@ import models.TigerHireModel
 case class LoginData(username: String, password: String)
 
 @Singleton
+//class TigerHire @Inject()(cc: ControllerComponents) extends AbstractController(cc) {
+  //private val model = new TigerHireModel(db)
 class TigerHire @Inject()(cc: MessagesControllerComponents) extends MessagesAbstractController(cc) {
+
 
   def index = Action {
     Ok(views.html.index())
@@ -193,7 +196,10 @@ class TigerHire @Inject()(cc: MessagesControllerComponents) extends MessagesAbst
 
   def sendMessage = TODO
 
-  //def validateLogin = TODO
+
+  def validateLogin = TODO
+  //= Action.async { implicit request => }
+
 
   def createNewUser = Action { 
     Ok(views.html.newUser()) 
