@@ -213,8 +213,15 @@ class TigerHire @Inject()(protected val dbConfigProvider: DatabaseConfigProvider
 //   }
 
 //   def createJobPage = TODO
+  //  Action {
+  //  Ok(views.html.createJobPage())
+  //}
 
-//   def submitJobPosting = TODO
+  //def submitJobPosting = TODO
+  //   withSessionUserid { userid =>
+  //     TigerHireModel.addJobPosting(salary, location, remote, hours, cId, id).map(count => Ok(Json.toJson(count > 0)))
+  //   }
+  // }
 
 //   def inbox = Action {
 //     val username = "mlewis"

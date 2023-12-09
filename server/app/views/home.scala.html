@@ -1,5 +1,8 @@
 @* home Template File *@
 @(jobPosts: Seq[String],jobTitle: List[String], company: List[String], location: List[String], remoteType: List[String],fop:List[String])(implicit request: MessagesRequestHeader, flash: Flash)
+
+@navbar("Home")
+
 <div class = "search-box">
     <h1>Job Search</h1>
 <div class="search-bar">

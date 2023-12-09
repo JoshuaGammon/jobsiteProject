@@ -14,12 +14,14 @@ POST       /validateApplicantPost                controllers.TigerHire.validateA
 +nocsrf
 POST       /createUser                   controllers.TigerHire.createUser
 
+
 # GET        /profile                      controllers.TigerHire.profile
 # GET        /home                         controllers.TigerHire.home
 GET        /jobPostList                  controllers.TigerHire.jobPostList
 # POST       /updateProfile                controllers.TigerHire.updateProfile
 # GET        /favorites                    controllers.TigerHire.favorites
 GET       /search                       controllers.TigerHire.searchJobTitle
+
 
 # GET        /job                          controllers.TigerHire.job
 # GET        /apply                        controllers.TigerHire.applicationPage

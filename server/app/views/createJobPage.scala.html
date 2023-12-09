@@ -1,0 +1,42 @@
+@()
+
+@main("Create Job Posting") {
+    <h3>Create a New Job Posting</h3>
+    
+    <form id="jobForm">
+        <label for="jobTitle">Job Title:</label>
+        <input type="text" id="jobTitle" placeholder="Job Title" required>
+
+        <label for="companyName">Company Name:</label>
+        <input type="text" id="companyName" placeholder="Company Name" required>
+        <br>
+
+        <label for="location">Location:</label>
+        <input type="text" id="location" placeholder="Location" required>
+        <br>
+
+        <label for="remoteType">Remote Type:</label>
+        <select id="remoteType" required>
+            <option value="In-Person">In-Person</option>
+            <option value="Remote">Remote</option>
+            <option value="Hybrid">Hybrid</option>
+        </select>
+        <br>
+
+        <label for="salary">Salary:</label>
+        <input type="text" id="salary" placeholder="Salary" required>
+        <br>
+
+        <h4>Custom Questions</h4>
+        <div id="questionsContainer">
+
+        </div>
+
+        <button type="button" onclick="addQuestion()">Add new question</button>
+        <br>
+        <br>
+        <button type="button" onclick="submitJobPosting()">Submit job posting</button>
+    </form>
+    
+    <script src="@routes.Assets.versioned("javascript/submitJob.js")"></script>
+}
