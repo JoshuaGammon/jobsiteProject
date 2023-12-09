@@ -6,6 +6,7 @@ import play.api.mvc._
 
 @Singleton
 class TigerHire @Inject()(cc: ControllerComponents) extends AbstractController(cc) {
+  //private val model = new TigerHireModel(db)
 
   def index = Action {
     Ok(views.html.index())
@@ -83,6 +84,7 @@ class TigerHire @Inject()(cc: ControllerComponents) extends AbstractController(c
   def sendMessage = TODO
 
   def validateLogin = TODO
+  //= Action.async { implicit request => }
 
   def createNewUser = TODO
 
