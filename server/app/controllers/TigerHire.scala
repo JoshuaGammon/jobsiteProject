@@ -124,21 +124,19 @@ class TigerHire @Inject()(cc: MessagesControllerComponents) extends MessagesAbst
      }.getOrElse(Redirect(routes.TigerHire.login))
    }
 
+  def profile = Action {
+    val name = "Mark Lewis"
+    val pronouns = "He/Him"
+    val bio = "Simulator of planetary rings, Scala zealot, avid roller skater, and general lover of programming and technology."
+    val education = "B.S. Computer Science -- Trinity University \n PhD, Roller Derbying -- RollerCade University"
+    val experience = "Professor at Trinity University -- 27 Years Senior Software Engineer -- Amazon Professor at Trinity University -- 4 months"
 
-
- def profile = Action {
-   // val name = "Mark Lewis"
-   // val pronouns = "He/Him"
-   // val bio = "Simulator of planetary rings, Scala zealot, avid roller skater, and general lover of programming and technology."
-   // val education = "B.S. Computer Science -- Trinity University \n PhD, Roller Derbying -- RollerCade University"
-   // val experience = "Professor at Trinity University -- 27 Years Senior Software Engineer -- Amazon Professor at Trinity University -- 4 months"
-
-    Ok(views.html.profile(/*name, pronouns, bio, education, experience*/))
+    Ok(views.html.profile(name, pronouns, bio, education, experience))
   }
 
   def favorites = TODO
 
-  def job = TODO/*Action{
+ def job = Action {
     val jobTitle = "Software Engineer"
     val company = "Mastercard"
     val location = "Morrisville, NC"
@@ -155,7 +153,7 @@ class TigerHire @Inject()(cc: MessagesControllerComponents) extends MessagesAbst
       "Interest in learning and working with new technologies"
     )
     Ok(views.html.job(jobTitle, company, location, remoteType, salary, description, qualifications))
-  }*/
+  }
 
   /*
   def home = Action {
@@ -163,16 +161,18 @@ class TigerHire @Inject()(cc: MessagesControllerComponents) extends MessagesAbst
   }
   */
 
-  def applicationPage =TODO/* Action{
+  def applicationPage = Action {
     val jobTitle = "Software Engineer"
     val company = "Mastercard"
     val location = "Morrisville, NC"
     val remoteType = "Hybrid"
 
     Ok(views.html.applicationPage(jobTitle, company, location, remoteType))
-  }*/
+  }
 
-  def submitApplication = TODO/*Action{
+  def submitApplication = TODO
+
+  def company = Action {
     val name = "Mastercard"
     val purpose = "We work to connect and power an inclusive digital economy that benefits everyone, everywhere by making transactions safe, simple, smart and accessible. Using secure data and networks, partnerships and passion, our innovations and solutions help individuals, financial institutions, governments and businesses realize their greatest potential. Our decency quotient, or DQ, drives our culture and everything we do inside and outside of our company."
     val companyType = "Payment Processing and Technology"
@@ -180,14 +180,16 @@ class TigerHire @Inject()(cc: MessagesControllerComponents) extends MessagesAbst
 
     Ok(views.html.company(name, purpose, companyType, dateFounded))
   }
-*/
-  def company = TODO
 
   def createJobPage = TODO
 
   def submitJobPosting = TODO
 
-  def inbox = TODO
+  def inbox = Action {
+    val username = "mlewis"
+    val messages = List(("amazon", "We want you to work at Amazon!"))
+    Ok(views.html.inbox(username, messages))
+  }
 
   def sendMessage = TODO
 

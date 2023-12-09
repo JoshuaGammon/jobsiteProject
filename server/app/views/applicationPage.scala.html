@@ -1,0 +1,56 @@
+@(jobTitle: String, company: String, location: String, remoteType: String)
+
+@main("Job Application") {
+    <link rel="stylesheet" type="text/css" href="@routes.Assets.versioned("stylesheets/job-styles.css")">
+    <div class="info-container">
+        <h4 class="text-heading">Job Application - @jobTitle</h4>
+        <div class="text-info">
+            <strong>Job Title:</strong> @jobTitle
+        </div>
+        <div class="text-info">
+            <strong>Company:</strong> @company
+        </div>
+        <div class="text-info">
+            <strong>Location:</strong> @location
+        </div>
+        <div class="text-info">
+            <strong>Remote Type:</strong> @remoteType
+        </div>
+
+        <h4 class="text-heading">Job Application Form</h4>
+        <form method="post" action="submitApplication">
+            <div class="form-group">
+                <label for="name">Preferred Name:</label>
+                <input type="text" name="name" required>
+            </div>
+
+            <div class="form-group">
+                <label for="question1">Describe your previous experience working with Scala Play:</label>
+                <textarea name="answer1" rows="4" required></textarea>
+            </div>
+
+            <div class="form-group">
+                <label for="question2">Why are you interested in this position?</label>
+                <textarea name="answer2" rows="4" required></textarea>
+            </div>
+
+            <div class="form-group">
+                <label for="question3">Which came first, the chicken or the egg? Defend your argument in no less than 7000 words:</label>
+                <textarea name="answer3" rows="4" required></textarea>
+            </div>
+
+            <div class="form-group">
+                <label for="resume">Upload Resume:</label>
+                <input type="file" name="resume" accept=".pdf, .doc, .docx" required>
+            </div>
+
+            <div class="form-group">
+                <!-- Eventually we will need ability to tell whether cover letter is optional based on db info -->
+                <label for="coverLetter">Upload Cover Letter (optional):</label> 
+                <input type="file" name="coverLetter" accept=".pdf, .doc, .docx">
+            </div>
+
+            <button type="submit">Submit Application</button>
+        </form>
+    </div>
+}

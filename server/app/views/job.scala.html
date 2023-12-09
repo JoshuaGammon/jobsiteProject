@@ -1,0 +1,34 @@
+@(jobTitle: String, company: String, location: String, remoteType: String, salary: String, description: String, qualifications: List[String])
+
+@main("Job Information") {
+    <link rel="stylesheet" type="text/css" href="@routes.Assets.versioned("stylesheets/main.css")">
+    <div class="info-container">
+        <h4 class="text-heading">Job Information</h4>
+        <div class="text-info">
+            <strong>Job Title:</strong> @jobTitle
+        </div>
+        <div class="text-info">
+            <strong>Company:</strong> @company
+        </div>
+        <div class="text-info">
+            <strong>Location:</strong> @location
+        </div>
+        <div class="text-info">
+            <strong>Remote Type:</strong> @remoteType
+        </div>
+        <div class="text-info">
+            <strong>Estimated Salary:</strong> @salary
+        </div>
+        <div class="text-info">
+            <strong>Description:</strong> @description
+        </div>
+        <div class="text-info">
+            <strong>Qualifications:</strong>
+            <ul>
+                @for(qualification <- qualifications) {
+                    <li>@qualification</li>
+                }
+            </ul>
+        </div>
+    </div>
+}

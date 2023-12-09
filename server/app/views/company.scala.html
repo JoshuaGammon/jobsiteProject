@@ -1,0 +1,21 @@
+@(name: String, purpose: String, companyType: String, dateFounded: String)
+
+@main("Profile") {
+    <link rel="stylesheet" type="text/css" href="@routes.Assets.versioned("stylesheets/main.css")">
+    <div class="info-container">
+        <h3 class="text-heading">@name</h3>
+        <div class="text-info">
+            <strong>Founded:</strong> @dateFounded
+        </div>
+        <div class="text-info">
+            <strong>Company Type:</strong> @companyType
+        </div>
+        <div class="text-info">
+            <strong>Our purpose:</strong> @purpose
+        </div>
+    </div>
+    <div class="info-container">
+        <h3 class="text-heading">Our jobs:</h3>
+        <!-- Here we need to render links to their list of jobs. Should look similar to home page. -->
+    </div>
+}

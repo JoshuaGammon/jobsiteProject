@@ -1,5 +1,23 @@
-@* profile Template File *@
+@(name: String, pronouns: String, bio: String, education: String, experience: String)
+
 
 @main("Profile") {
-    <h4>Profile page</h4>
+    <link rel="stylesheet" type="text/css" href="@routes.Assets.versioned("stylesheets/main.css")">
+    <div class="info-container">
+        <h3 class="text-heading">@name (@pronouns)</h3>
+        <div class="text-info">
+            <strong>Bio:</strong> @bio
+        </div>
+        <div class="text-info">
+            <strong>Education:</strong> @education
+        </div>
+        <div class="text-info">
+            <strong>Experience:</strong> @experience
+        </div>
+        <br>
+        <form method="GET" action="inbox">
+            <button type="submit">Message</button>
+        </form>
+        
+    </div>
 }
