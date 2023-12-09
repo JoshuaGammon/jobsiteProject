@@ -1,35 +1,41 @@
-@(jobForm: Form[JobPosting])
+@()
 
 @main("Create Job Posting") {
     <h3>Create a New Job Posting</h3>
     
-    <form action="@routes.RecruiterController.submitJobPosting" method="post">
-        @helper.inputText(jobForm("jobTitle"), 'placeholder -> "Job Title", 'required -> "required")
-        @helper.inputText(jobForm("companyName"), 'placeholder -> "Company Name", 'required -> "required")
-        @helper.inputText(jobForm("description"), 'placeholder -> "Description", 'required -> "required")
-        @helper.inputText(jobForm("location"), 'placeholder -> "Location", 'required -> "required")
-        @helper.inputText(jobForm("salary"), 'placeholder -> "Salary", 'required -> "required")
-        
-        <label for="remoteType">Remote Type:</label>
-        @helper.select(
-            jobForm("remoteType"),
-            options = Seq("In-Person" -> "In-Person", "Remote" -> "Remote", "Hybrid" -> "Hybrid"),
-            '_default -> "-- Select Remote Type --",
-            'required -> "required"
-        )
-        
-        <h4>Custom Questions</h4>
-        @jobForm("questions").indexes.map { index =>
-            <div class="question">
-                @helper.inputText(jobForm(s"questions[$index]"), '_label -> s"Question $index")
-                <button type="button" class="remove-question">Remove</button>
-            </div>
-        }
-        
-        <button type="button" id="add-question">Add Question</button>
-        
+    <form id="jobForm">
+        <label for="jobTitle">Job Title:</label>
+        <input type="text" id="jobTitle" placeholder="Job Title" required>
+
+        <label for="companyName">Company Name:</label>
+        <input type="text" id="companyName" placeholder="Company Name" required>
         <br>
-        <button type="submit">Submit Job Posting</button>
+
+        <label for="location">Location:</label>
+        <input type="text" id="location" placeholder="Location" required>
+        <br>
+
+        <label for="remoteType">Remote Type:</label>
+        <select id="remoteType" required>
+            <option value="In-Person">In-Person</option>
+            <option value="Remote">Remote</option>
+            <option value="Hybrid">Hybrid</option>
+        </select>
+        <br>
+
+        <label for="salary">Salary:</label>
+        <input type="text" id="salary" placeholder="Salary" required>
+        <br>
+
+        <h4>Custom Questions</h4>
+        <div id="questionsContainer">
+
+        </div>
+
+        <button type="button" onclick="addQuestion()">Add new question</button>
+        <br>
+        <br>
+        <button type="button" onclick="submitJobPosting()">Submit job posting</button>
     </form>
     
     <script src="@routes.Assets.versioned("javascript/submitJob.js")"></script>

@@ -15,16 +15,16 @@ case class LoginData(username: String, password: String)
   //private val model = new TigerHireModel(db)
 class TigerHire @Inject()(cc: MessagesControllerComponents) extends MessagesAbstractController(cc) {
   
-  let jobForm = Form(
-    mapping(
-      "jobTitle" -> nonEmptyText,
-      "companyName" -> nonEmptyText,
-      "location" -> nonEmptyText,
-      "remoteType" -> nonEmptyText,
-      "salary" -> nonEmptyText,
-      "questions" -> seq(text)
-    )(JobPosting.apply)(JobPosting.unapply)
-  )
+  // val jobForm = Form(
+  //   mapping(
+  //     "jobTitle" -> nonEmptyText,
+  //     "companyName" -> nonEmptyText,
+  //     "location" -> nonEmptyText,
+  //     "remoteType" -> nonEmptyText,
+  //     "salary" -> nonEmptyText,
+  //     "questions" -> seq(text)
+  //   )(JobPosting.apply)(JobPosting.unapply)
+  // )
 
   def index = Action {
     Ok(views.html.index())
@@ -195,14 +195,14 @@ class TigerHire @Inject()(cc: MessagesControllerComponents) extends MessagesAbst
   }
 
   def createJobPage = Action {
-    Ok(views.html.createJobPage(jobForm))
+    Ok(views.html.createJobPage())
   }
 
-  def submitJobPosting = Action.async { implicit request =>
-    withSessionUserid { userid =>
-      model.addJobPosting(salary, location, remote, hours, cId, id).map(count => Ok(Json.toJson(count > 0)))
-    }
-  }
+  def submitJobPosting = TODO //Action.async { implicit request =>
+  //   //withSessionUserid { userid =>
+  //     TigerHireModel.addJobPosting(salary, location, remote, hours, cId, id).map(count => Ok(Json.toJson(count > 0)))
+  //   //}
+  // }
 
   def inbox = Action {
     val username = "mlewis"
