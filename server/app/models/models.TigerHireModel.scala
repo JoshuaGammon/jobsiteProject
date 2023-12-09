@@ -9,6 +9,7 @@ import collection.mutable
 object TigerHireModel {
     private val users = mutable.Map[String, String]("mlewis" -> "1234") //temporary data while DB in progress
     private val jobPosts = mutable.Map[String, List[String]]("mlewis" -> List("Job Post 1","Job Post 2"))
+    // private val inboxMessages = mutable.Map[String, List[String]]
 
     def validateUser(username: String, password: String): Boolean = {
         users.get(username).map(_ == password).getOrElse(false)
@@ -47,5 +48,13 @@ class TigerHireModel(db: Database)(implicit ec: ExecutionContext) {
     def getJobPost(username: String): Seq[String] = {
         jobPosts.get(username).getOrElse(Nil)
     }
+
+    // def getPrivateMessage(username: String): Seq[String] = {
+    //     inboxMessages.get(username).getOrElse(Nil)
+    // }
+
+    // def addPrivateMessage(username: String, message: String): Unit = {
+    //     inboxMessages(username) = message :: inboxMessages.get(username).getOrElse(Nil)
+    // }
 
 }
