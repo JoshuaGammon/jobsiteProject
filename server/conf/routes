@@ -8,7 +8,7 @@ GET        /login                        controllers.TigerHire.login
 GET        /recruiterLogin              controllers.TigerHire.recruiterLogin
 
 # GET        /validateGet1                 controllers.TigerHire.validateLoginGet(username,password)
-# GET        /newUser                      controllers.TigerHire.createNewUser
+GET        /newUser                      controllers.TigerHire.newUser
 
 +nocsrf
 POST       /validateApplicantPost                controllers.TigerHire.validateApplicantPost

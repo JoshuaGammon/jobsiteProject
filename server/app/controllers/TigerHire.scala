@@ -246,9 +246,9 @@ class TigerHire @Inject()(protected val dbConfigProvider: DatabaseConfigProvider
 //   //= Action.async { implicit request => }
 
 
-//   def createNewUser = Action { 
-//     Ok(views.html.newUser()) 
-//   }
+  def newUser = Action { 
+    Ok(views.html.newUser()) 
+  }
 
 //   def updateProfile = TODO
 }

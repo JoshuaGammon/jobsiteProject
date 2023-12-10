@@ -20,7 +20,8 @@ lazy val server = (project in file("server")).settings(commonSettings).settings(
 		"org.scalatestplus.play" %% "scalatestplus-play" % "5.1.0" % Test,
 		"com.typesafe.play" %% "play-slick" % "5.1.0",
 		"com.typesafe.slick" %% "slick-codegen" % "3.4.1",
-    "org.postgresql" % "postgresql" % "42.6.0",
+    "mysql" % "mysql-connector-java" % "6.0.6",
+    "org.postgresql" % "postgresql" % "42.2.11",
     "com.typesafe.slick" %% "slick-hikaricp" % "3.4.1",
     specs2 % Test
   ),
