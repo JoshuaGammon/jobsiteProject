@@ -1,19 +1,20 @@
-@(name: String, pronouns: String, bio: String, education: String, experience: String)
+@(profileList: Seq[ProfileItem])
 
 @navbar("Profile")
 
 @main("Profile") {
     <link rel="stylesheet" type="text/css" href="@routes.Assets.versioned("stylesheets/main.css")">
+    @profile = profileList.head()
     <div class="info-container">
-        <h3 class="text-heading">@name (@pronouns)</h3>
+        <h3 class="text-heading"> @profile.name (@profile.pronouns)</h3>
         <div class="text-info">
-            <strong>Bio:</strong> @bio
+            <strong>Bio:</strong> @profile.description
         </div>
         <div class="text-info">
-            <strong>Education:</strong> @education
+            <strong>Education:</strong> @profile.university
         </div>
         <div class="text-info">
-            <strong>Experience:</strong> @experience
+            <strong>Email:</strong> @profile.email
         </div>
         <br>
         <form method="GET" action="inbox">
