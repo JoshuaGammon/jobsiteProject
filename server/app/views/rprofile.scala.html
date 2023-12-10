@@ -1,6 +1,6 @@
-@(profileList: Seq[ProfileItem])
+@(profileList: Seq[RProfileItem])
 
-@navbar("Profile")
+@rnavbar("Profile")
 
 @main("Profile") {
     <link rel="stylesheet" type="text/css" href="@routes.Assets.versioned("stylesheets/main.css")">
@@ -11,7 +11,7 @@
             <strong>Bio:</strong> @profile.description
         </div>
         <div class="text-info">
-            <strong>Education:</strong> @profile.university
+            <strong>Education:</strong> @profile.currentPos
         </div>
         <div class="text-info">
             <strong>Email:</strong> @profile.email

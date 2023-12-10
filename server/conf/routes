@@ -18,8 +18,10 @@ POST       /createUser                   controllers.TigerHire.createUser
 POST        /validateRecruiterPost      controllers.TigerHire.validateRecruiterPost
 
 GET        /profilee                     controllers.TigerHire.profilee
+GET        /rprofile                     controllers.TigerHire.rprofile
 # GET        /home                         controllers.TigerHire.home
 GET        /jobPostList                  controllers.TigerHire.jobPostList
+GET        /rjobPostList                  controllers.TigerHire.rjobPostList
 # POST       /updateProfile                controllers.TigerHire.updateProfile
 # GET        /favorites                    controllers.TigerHire.favorites
 # GET       /search                       controllers.TigerHire.searchJobTitle

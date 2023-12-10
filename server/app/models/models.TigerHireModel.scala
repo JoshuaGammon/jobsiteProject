@@ -67,6 +67,17 @@ class TigerHireModel(db: Database)(implicit ec: ExecutionContext) {
       }).result
     ).map (profile => profile.map(profile => ProfileItem(profile.description, profile.education, profile.name, profile.university, profile.email, profile.pronouns, profile.aId)))
   }
+
+  def getRProfile(username: String): Future[Seq[RProfileItem]] = {
+    db.run(
+      (for {
+        recruiter <- Recruiters if recruiter.username === username
+        profile <- RProfile if profile.rId === recruiter.id
+      } yield {
+        profile
+      }).result
+    ).map (profile => profile.map(profile => RProfileItem(profile.description, profile.location, profile.name, profile.currentPosition, profile.email, profile.pronouns, profile.rId)))
+  }
 }
 
 /*

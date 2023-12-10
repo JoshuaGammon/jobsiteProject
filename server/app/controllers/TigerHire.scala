@@ -66,7 +66,7 @@ class TigerHire @Inject()(protected val dbConfigProvider: DatabaseConfigProvider
       val password = args("password").head 
       model.validateRecruiters(username,password).map { userExists =>
         if(userExists){
-          Redirect(routes.TigerHire.jobPostList).withSession("username" -> username)
+          Redirect(routes.TigerHire.rjobPostList).withSession("username" -> username)
         } else {
           Redirect(routes.TigerHire.login).flashing("error" -> "Invalid username/password combination.")
         }
@@ -122,6 +122,13 @@ class TigerHire @Inject()(protected val dbConfigProvider: DatabaseConfigProvider
         }//.getOrElse(Redirect(routes.TigerHire.login))
     }
 
+  def rjobPostList = Action.async { implicit request =>
+    model.getJobs().map { jobs => 
+            println("Getting jobs page")
+            Ok(views.html.rhome(jobs))
+        }//.getOrElse(Redirect(routes.TigerHire.login))
+    }
+
   //  def searchJobTitle = Action { implicit request =>
   //    val query = request.getQueryString("search").getOrElse("")
   //    val company = List("Mastercard","Visa","Paypal")
@@ -141,9 +148,15 @@ class TigerHire @Inject()(protected val dbConfigProvider: DatabaseConfigProvider
   def profilee = Action.async { implicit request =>
     val username = request.session.get("username").getOrElse("tjarrett")
     model.getProfile(username).map { profile => 
-            println("Getting jobs page")
             Ok(views.html.profile(profile))
-        }//.getOrElse(Redirect(routes.TigerHire.login))
+        }
+    }
+
+  def rprofile = Action.async { implicit request =>
+    val username = request.session.get("username").getOrElse("tjarrett")
+    model.getRProfile(username).map { profile => 
+            Ok(views.html.rprofile(profile))
+        }
     }
   //   val name = "Mark Lewis"
   //   val pronouns = "He/Him"
