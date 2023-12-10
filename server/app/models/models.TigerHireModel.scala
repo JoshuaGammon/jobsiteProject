@@ -1,5 +1,7 @@
 package models
 
+//(salary: String, location: String, remote: String, hours: String, cId: Int, id: Int, name: String)
+
 import collection.mutable
 import slick.jdbc.PostgresProfile.api._
 import scala.concurrent.ExecutionContext
@@ -44,6 +46,16 @@ class TigerHireModel(db: Database)(implicit ec: ExecutionContext) {
     //         }).result
     //     )
     // }
+
+    def getJobs(): Future[Seq[JobItem]] = {
+    db.run(
+      (for {
+        job <- Jobs
+      } yield {
+        job
+      }).result
+    ).map (jobs => jobs.map(job => JobItem(job.salary, job.location, job.remote, job.hours, job.cId, job.id, job.name)))
+  }
 }
 
 /*
