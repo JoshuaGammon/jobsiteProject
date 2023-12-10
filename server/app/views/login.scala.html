@@ -15,7 +15,7 @@
         <input type="submit"></input>
     </form>
 
-    <form method="get" action="/newUser">
+    <form method="get" action="@routes.TigerHire.newUser">
         @helper.CSRF.formField 
         <h3>Create New User</h3>
         <input type="submit" value = "Create User"></input>
