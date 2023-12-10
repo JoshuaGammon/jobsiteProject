@@ -1,44 +1,34 @@
 @* home Template File *@
-@(jobPosts: Seq[String],jobTitle: List[String], company: List[String], location: List[String], remoteType: List[String],fop:List[String])(implicit request: MessagesRequestHeader, flash: Flash)
+@(jobList: Seq[JobItem])
 
 @navbar("Home")
 
-<div class = "search-box">
-    <h1>Job Search</h1>
-<div class="search-bar">
-    <form action="@routes.TigerHire.searchJobTitle" method="get">
-        <input type="text" name="search" placeholder="Search...">
-        <input type="submit" value="Search">
-    </form>
-
-
-</div>
-</div>
 @main("home") {
+    @for(job <- jobList){
+   
+       <div class="info-container">
+           
+           <div class="text-info">
+               <a href = "@routes.TigerHire.job"><h1>@job.name</h1></a>
+               
+     
+           </div>    
+   
+           <div class="text-info">
+            <a href = "@routes.TigerHire.company">@job.id</a>
+           </div>
+           <div class="text-info">
+            @job.location
+           </div>
+           <div class="text-info">
+            @job.remote
+           </div>
+           <div class="text-info">
+            Salary: @job.salary
+           </div>
+   
+           </div>
+       </div>
+   }
 
-    <link rel="stylesheet" type="text/css" href="@routes.Assets.versioned("stylesheets/main.css")">
- @for(i<- jobTitle.indices){
-
-    <div class="info-container">
-        
-        <div class="text-info">
-           <h2>@fop(i)</h2>
-            <a href = "@routes.TigerHire.job"><h1>@jobTitle(i)</h1></a>
-            
-  
-        </div>    
-
-        <div class="text-info">
-         <a href = "@routes.TigerHire.company">@company(i)</a>
-        </div>
-        <div class="text-info">
-         @location(i)
-        </div>
-        <div class="text-info">
-         @remoteType(i)
-        </div>
-
-        </div>
-    </div>
-}
 }
