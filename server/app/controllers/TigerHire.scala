@@ -66,7 +66,7 @@ class TigerHire @Inject()(protected val dbConfigProvider: DatabaseConfigProvider
       val password = args("password").head 
       model.validateRecruiters(username,password).map { userExists =>
         if(userExists){
-          Redirect(routes.TigerHire.jobPostList).withSession("username" -> username)
+          Redirect(routes.TigerHire.rjobPostList).withSession("username" -> username)
         } else {
           Redirect(routes.TigerHire.login).flashing("error" -> "Invalid username/password combination.")
         }
@@ -122,7 +122,13 @@ class TigerHire @Inject()(protected val dbConfigProvider: DatabaseConfigProvider
         }//.getOrElse(Redirect(routes.TigerHire.login))
     }
 
-    def searchJobTitle = Action.async { implicit request =>
+  def rjobPostList = Action.async { implicit request =>
+    model.getJobs().map { jobs => 
+            println("Getting jobs page")
+            Ok(views.html.rhome(jobs))
+        }//.getOrElse(Redirect(routes.TigerHire.login))
+    
+   def searchJobTitle = Action.async { implicit request =>
     val query = request.getQueryString("search").getOrElse("")
     model.searchJobTitle(query).map { jobPosts => 
         Ok(views.html.home(jobPosts))
@@ -145,15 +151,27 @@ class TigerHire @Inject()(protected val dbConfigProvider: DatabaseConfigProvider
   //    }.getOrElse(Redirect(routes.TigerHire.login))
   //  }
 
-  def profilee = Action {
-    val name = "Mark Lewis"
-    val pronouns = "He/Him"
-    val bio = "Simulator of planetary rings, Scala zealot, avid roller skater, and general lover of programming and technology."
-    val education = "B.S. Computer Science -- Trinity University \n PhD, Roller Derbying -- RollerCade University"
-    val experience = "Professor at Trinity University -- 27 Years Senior Software Engineer -- Amazon Professor at Trinity University -- 4 months"
+  def profilee = Action.async { implicit request =>
+    val username = request.session.get("username").getOrElse("tjarrett")
+    model.getProfile(username).map { profile => 
+            Ok(views.html.profile(profile))
+        }
+    }
 
-    Ok(views.html.profile(name, pronouns, bio, education, experience))
-  }
+  def rprofile = Action.async { implicit request =>
+    val username = request.session.get("username").getOrElse("tjarrett")
+    model.getRProfile(username).map { profile => 
+            Ok(views.html.rprofile(profile))
+        }
+    }
+  //   val name = "Mark Lewis"
+  //   val pronouns = "He/Him"
+  //   val bio = "Simulator of planetary rings, Scala zealot, avid roller skater, and general lover of programming and technology."
+  //   val education = "B.S. Computer Science -- Trinity University \n PhD, Roller Derbying -- RollerCade University"
+  //   val experience = "Professor at Trinity University -- 27 Years Senior Software Engineer -- Amazon Professor at Trinity University -- 4 months"
+
+  //   Ok(views.html.profile(name, pronouns, bio, education, experience))
+  // }
 
 //   def favorites = TODO
 
@@ -214,7 +232,7 @@ class TigerHire @Inject()(protected val dbConfigProvider: DatabaseConfigProvider
   // }
 
   def inbox = Action {
-    val username = "mlewis"
+    val username = "mlewis"<<<<<<< getProfile
     val messages = List(("amazon", "We want you to work at Amazon!"))
     Ok(views.html.inbox(username, messages))
   }

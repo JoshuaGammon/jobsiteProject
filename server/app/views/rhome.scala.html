@@ -1,0 +1,34 @@
+@* home Template File *@
+@(jobList: Seq[JobItem])
+
+@rnavbar("Home")
+
+@main("home") {
+    @for(job <- jobList){
+   
+       <div class="info-container">
+           <p>hello</p>
+           <div class="text-info">
+               <a href = "@routes.TigerHire.job"><h1>@job.name</h1></a>
+               
+     
+           </div>    
+   
+           <div class="text-info">
+            <a href = "@routes.TigerHire.company">@job.id</a>
+           </div>
+           <div class="text-info">
+            @job.location
+           </div>
+           <div class="text-info">
+            @job.remote
+           </div>
+           <div class="text-info">
+            Salary: @job.salary
+           </div>
+   
+           </div>
+       </div>
+   }
+
+}
