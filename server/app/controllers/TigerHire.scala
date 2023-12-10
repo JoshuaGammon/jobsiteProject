@@ -117,9 +117,8 @@ class TigerHire @Inject()(protected val dbConfigProvider: DatabaseConfigProvider
 
  def jobPostList = Action.async { implicit request =>
     model.getJobs().map { jobs => 
-            println("Getting jobs page")
             Ok(views.html.home(jobs))
-        }//.getOrElse(Redirect(routes.TigerHire.login))
+        }
     }
 
   //  def searchJobTitle = Action { implicit request =>
@@ -151,29 +150,8 @@ class TigerHire @Inject()(protected val dbConfigProvider: DatabaseConfigProvider
 //   def favorites = TODO
 
  def job = Action {
-    val jobTitle = "Software Engineer"
-    val company = "Mastercard"
-    val location = "Morrisville, NC"
-    val remoteType = "Hybrid"
-    val salary = "$100,000 - $120,000 per year"
-    val description = "At Mastercard, Software Engineers work directly with Software Development Engineers in small teams and are deeply engaged throughout the entire development process. They are directly responsible for ensuring great products and analytics for our clients. Innovation is also a key facet in the role. Software Quality Engineers are expected to never settle for the status quo in how Mastercard approaches product quality and always look for ways to accelerate or improve the testing tactics taken."
-    val qualifications = List(
-      "Currently enrolled in a bachelor’s degree program majoring in Computer Science, Engineering, or related fields with a graduation date of December 2023 – Spring 2024",
-      "Less than one year of professional experience",
-      "Strong analytic skills and problem-solving mindset; ability to think outside of the box to solve problems",
-      "Demonstrated ability to thrive on small, highly collaborative teams and work in an agile environment",
-      "Leadership experience or heavy involvement in campus clubs, teams, or organizations",
-      "Attention to detail and organizational skill",
-      "Interest in learning and working with new technologies"
-    )
-    Ok(views.html.job(jobTitle, company, location, remoteType, salary, description, qualifications))
+    Ok(views.html.job())
   }
-
-//   /*
-//   def home = Action {
-//     Ok(views.html.home())
-//   }
-//   */
 
   def applicationPage = Action {
     val jobTitle = "Software Engineer"

@@ -1,26 +1,26 @@
-@(jobTitle: String, company: String, location: String, remoteType: String, salary: String, description: String, qualifications: List[String])
+@(job: JobItem)
 
 @main("Job Information") {
     <link rel="stylesheet" type="text/css" href="@routes.Assets.versioned("stylesheets/main.css")">
     <div class="info-container">
         <h4 class="text-heading">Job Information</h4>
         <div class="text-info">
-            <strong>Job Title:</strong> @jobTitle
+            <strong>Job Title:</strong> @job.name
         </div>
         <div class="text-info">
-            <strong>Company:</strong> @company
+            <strong>Company:</strong> @job.cId
         </div>
         <div class="text-info">
-            <strong>Location:</strong> @location
+            <strong>Location:</strong> @job.location
         </div>
         <div class="text-info">
-            <strong>Remote Type:</strong> @remoteType
+            <strong>Remote Type:</strong> @job.remote
         </div>
         <div class="text-info">
-            <strong>Estimated Salary:</strong> @salary
+            <strong>Estimated Salary:</strong> @job.salary
         </div>
-        <div class="text-info">
-            <strong>Description:</strong> @description
+        <!-- <div class="text-info">
+            <strong>Description:</strong> @job.description
         </div>
         <div class="text-info">
             <strong>Qualifications:</strong>
@@ -29,7 +29,7 @@
                     <li>@qualification</li>
                 }
             </ul>
-        </div>
+        </div> -->
         <a href = "@routes.TigerHire.applicationPage">
         <button>
             Apply
