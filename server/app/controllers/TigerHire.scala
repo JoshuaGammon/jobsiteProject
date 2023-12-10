@@ -127,6 +127,12 @@ class TigerHire @Inject()(protected val dbConfigProvider: DatabaseConfigProvider
             println("Getting jobs page")
             Ok(views.html.rhome(jobs))
         }//.getOrElse(Redirect(routes.TigerHire.login))
+    
+   def searchJobTitle = Action.async { implicit request =>
+    val query = request.getQueryString("search").getOrElse("")
+    model.searchJobTitle(query).map { jobPosts => 
+        Ok(views.html.home(jobPosts))
+      }
     }
 
   //  def searchJobTitle = Action { implicit request =>
@@ -226,7 +232,7 @@ class TigerHire @Inject()(protected val dbConfigProvider: DatabaseConfigProvider
   // }
 
   def inbox = Action {
-    val username = "mlewis"
+    val username = "mlewis"<<<<<<< getProfile
     val messages = List(("amazon", "We want you to work at Amazon!"))
     Ok(views.html.inbox(username, messages))
   }

@@ -57,6 +57,7 @@ class TigerHireModel(db: Database)(implicit ec: ExecutionContext) {
     ).map (jobs => jobs.map(job => JobItem(job.salary, job.location, job.remote, job.hours, job.cId, job.id, job.name)))
   }
 
+
   def getProfile(username: String): Future[Seq[ProfileItem]] = {
     db.run(
       (for {
@@ -78,7 +79,14 @@ class TigerHireModel(db: Database)(implicit ec: ExecutionContext) {
       }).result
     ).map (profile => profile.map(profile => RProfileItem(profile.description, profile.location, profile.name, profile.currentPosition, profile.email, profile.pronouns, profile.rId)))
   }
+    def searchJobTitle(query: String): Future[Seq[JobItem]] = {
+        db.run(
+            Jobs.filter(_.name.toLowerCase.like(s"%${query.toLowerCase}%")).result
+        ).map (jobs => jobs.map(job => JobItem(job.salary, job.location, job.remote, job.hours, job.cId, job.id, job.name)))
+    }
+
 }
+
 
 /*
     def createUser(username: String, password: String): Boolean = {
