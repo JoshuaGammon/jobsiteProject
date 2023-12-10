@@ -56,7 +56,14 @@ class TigerHireModel(db: Database)(implicit ec: ExecutionContext) {
       }).result
     ).map (jobs => jobs.map(job => JobItem(job.salary, job.location, job.remote, job.hours, job.cId, job.id, job.name)))
   }
+
+    def searchJobTitle(query: String): Future[Seq[JobItem]] = {
+        db.run(
+            Jobs.filter(_.name.toLowerCase.like(s"%${query.toLowerCase}%")).result
+        ).map (jobs => jobs.map(job => JobItem(job.salary, job.location, job.remote, job.hours, job.cId, job.id, job.name)))
+    }
 }
+
 
 /*
     def createUser(username: String, password: String): Boolean = {
