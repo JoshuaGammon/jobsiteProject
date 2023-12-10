@@ -122,6 +122,13 @@ class TigerHire @Inject()(protected val dbConfigProvider: DatabaseConfigProvider
         }//.getOrElse(Redirect(routes.TigerHire.login))
     }
 
+    def searchJobTitle = Action.async { implicit request =>
+    val query = request.getQueryString("search").getOrElse("")
+    model.searchJobTitle(query).map { jobPosts => 
+        Ok(views.html.home(jobPosts))
+      }
+    }
+
   //  def searchJobTitle = Action { implicit request =>
   //    val query = request.getQueryString("search").getOrElse("")
   //    val company = List("Mastercard","Visa","Paypal")

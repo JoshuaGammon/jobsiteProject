@@ -22,7 +22,7 @@ GET        /profilee                     controllers.TigerHire.profilee
 GET        /jobPostList                  controllers.TigerHire.jobPostList
 # POST       /updateProfile                controllers.TigerHire.updateProfile
 # GET        /favorites                    controllers.TigerHire.favorites
-# GET       /search                       controllers.TigerHire.searchJobTitle
+GET       /search                       controllers.TigerHire.searchJobTitle
 
 
  GET        /job                          controllers.TigerHire.job
