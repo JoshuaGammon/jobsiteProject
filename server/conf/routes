@@ -5,6 +5,7 @@
 
 GET        /                             controllers.TigerHire.index
 GET        /login                        controllers.TigerHire.login
+GET        /logout                       controllers.TigerHire.logout
 GET        /recruiterLogin              controllers.TigerHire.recruiterLogin
 
 GET       /rApplication                 controllers.TigerHire.rApplication
