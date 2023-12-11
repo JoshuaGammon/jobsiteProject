@@ -1,21 +1,41 @@
-@(name: String, purpose: String, companyType: String, dateFounded: String)
+@(jobPost: Seq[JobItem])
 
 @main("Profile") {
     <link rel="stylesheet" type="text/css" href="@routes.Assets.versioned("stylesheets/main.css")">
     <div class="info-container">
-        <h3 class="text-heading">@name</h3>
+        <h3 class="text-heading"></h3>
         <div class="text-info">
-            <strong>Founded:</strong> @dateFounded
+            <strong>Founded:</strong> 
         </div>
         <div class="text-info">
-            <strong>Company Type:</strong> @companyType
+            <strong>Company Type:</strong> 
         </div>
         <div class="text-info">
-            <strong>Our purpose:</strong> @purpose
+            <strong>Our purpose:</strong> 
         </div>
     </div>
     <div class="info-container">
         <h3 class="text-heading">Our jobs:</h3>
+        <h1>Jobs Associated with company: @jobPost.headOption.map(_.cId)</h1>
+        @for(job <- jobPost) {
+          <div class="info-container">
+            <div class="text-info">
+              @job.hours
+            </div>
+            <div class="text-info">
+              <a href="@routes.TigerHire.job">@job.name</a>
+            </div>
+            <div class="text-info">
+              <a href="@routes.TigerHire.company">@job.cId</a>
+            </div>
+            <div class="text-info">
+              @job.location
+            </div>
+            <div class="text-info">
+              @job.remote
+            </div>
+          </div>
+        }
         <!-- Here we need to render links to their list of jobs. Should look similar to home page. -->
     </div>
 }
