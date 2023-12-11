@@ -7,6 +7,10 @@ GET        /                             controllers.TigerHire.index
 GET        /login                        controllers.TigerHire.login
 GET        /recruiterLogin              controllers.TigerHire.recruiterLogin
 
+GET       /rApplication                 controllers.TigerHire.rApplication
+
+
+
 # GET        /validateGet1                 controllers.TigerHire.validateLoginGet(username,password)
 GET        /newUser                      controllers.TigerHire.newUser
 

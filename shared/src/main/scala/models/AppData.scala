@@ -12,3 +12,5 @@ case class RProfileItem(description: Option[String], location: Option[String], n
 case class CompanyDescription(hq: String, companyName: String, purpose: String, companyType: String, id: Int)
 
 case class ApplicantInfo(name: String, aId: Option[Int])
+
+case class ApplItem(aId: Option[Int], jId: Option[Int], answer1:Option[String], answer2:Option[String], answer3:Option[String], experience: Option[String])
