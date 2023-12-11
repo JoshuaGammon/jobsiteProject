@@ -48,15 +48,24 @@ class TigerHireModel(db: Database)(implicit ec: ExecutionContext) {
     // }
 
     def getJobs(): Future[Seq[JobItem]] = {
-    db.run(
-      (for {
-        job <- Jobs
-      } yield {
-        job
-      }).result
-    ).map (jobs => jobs.map(job => JobItem(job.salary, job.location, job.remote, job.hours, job.cId, job.id, job.name)))
-  }
+        db.run(
+            (for {
+                job <- Jobs
+            } yield {
+                job
+            }).result
+        ).map (jobs => jobs.map(job => JobItem(job.salary, job.location, job.remote, job.hours, job.cId, job.id, job.name)))
+    }
 
+    def getJob(id: Int): Future[Seq[JobItem]] = {
+        db.run(
+            (for {
+                job <- Jobs if job.id === id
+            } yield {
+                job
+            }).result
+        ).map (jobs => jobs.map(job => JobItem(job.salary, job.location, job.remote, job.hours, job.cId, job.id, job.name)))
+    }
 
   def getProfile(username: String): Future[Seq[ProfileItem]] = {
     db.run(
@@ -84,7 +93,6 @@ class TigerHireModel(db: Database)(implicit ec: ExecutionContext) {
             Jobs.filter(_.name.toLowerCase.like(s"%${query.toLowerCase}%")).result
         ).map (jobs => jobs.map(job => JobItem(job.salary, job.location, job.remote, job.hours, job.cId, job.id, job.name)))
     }
-
 }
 
 
