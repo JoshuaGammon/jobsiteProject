@@ -78,17 +78,17 @@ class TigerHireModel(db: Database)(implicit ec: ExecutionContext) {
     }
 
 
-//   def getInboxJobs(username: String): Future[Seq[JobItem]] = {
-//     db.run(
-//       (for {
-//         applicant <- Applicants if applicant.username === username
-//         in <- Inbox if in.aId === applicant.id
-//         job <- Jobs if job.id === in.jId
-//       } yield {
-//         job
-//       }).result
-//     ).map (jobs => jobs.map(job => JobItem(job.salary, job.location, job.remote, job.hours, job.cId, job.id, job.name, job.description)))
-//   }
+  def getInboxJobs(username: String): Future[Seq[JobItem]] = {
+    db.run(
+      (for {
+        applicant <- Applicants if applicant.username === username
+        in <- Inbox if in.aId === applicant.id
+        job <- Jobs if job.id === in.jId
+      } yield {
+        job
+      }).result
+    ).map (jobs => jobs.map(job => JobItem(job.salary, job.location, job.remote, job.hours, job.cId, job.id, job.name, job.description)))
+  }
 
   def getRInboxJobs(username: String): Future[Seq[JobItem]] = {
     db.run(
