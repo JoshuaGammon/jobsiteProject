@@ -30,12 +30,11 @@ GET       /search                       controllers.TigerHire.searchJobTitle
 
 GET        /job/:id                         controllers.TigerHire.job(id: Int)
 
-GET        /viewJob/:cId                  controllers.TigerHire.viewJob(cId: Int)
+GET        /viewCompany/:cId                  controllers.TigerHire.viewCompany(cId: Int)
 
  GET        /apply                        controllers.TigerHire.applicationPage
 # POST       /submitApplication            controllers.TigerHire.submitApplication
 
- GET        /company                      controllers.TigerHire.company
 
 # GET        /createJob                    controllers.TigerHire.createJobPage
 # POST       /submitJobPosting             controllers.TigerHire.submitJobPosting

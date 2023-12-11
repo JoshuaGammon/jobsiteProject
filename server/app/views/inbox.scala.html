@@ -17,7 +17,7 @@
         </div>    
 
         <div class="text-info">
-         <a href = "@routes.TigerHire.company">@job.id</a>
+         <a href = "@routes.TigerHire.viewCompany(job.cId.getOrElse(-1))">@job.id</a>
         </div>
         <div class="text-info">
          @job.location

@@ -67,6 +67,16 @@ class TigerHireModel(db: Database)(implicit ec: ExecutionContext) {
         ).map (jobs => jobs.map(job => JobItem(job.salary, job.location, job.remote, job.hours, job.cId, job.id, job.name)))
     }
 
+        def getCompanyInfo(id: Int): Future[Seq[CompanyDescription]] = {
+        db.run(
+            (for {
+                company <- Company if company.id === id
+            } yield {
+                company
+            }).result
+        ).map (companies => companies.map(company => CompanyDescription(company.headquarters.getOrElse(""), company.name.getOrElse(""), company.purpose.getOrElse(""), company.companyType.getOrElse(""),company.id)))
+    }
+
   def getInboxJobs(username: String): Future[Seq[JobItem]] = {
     db.run(
       (for {
