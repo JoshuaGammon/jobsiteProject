@@ -14,7 +14,7 @@ trait Tables {
   import slick.jdbc.{GetResult => GR}
 
   /** DDL for all tables. Call .create to execute. */
-  lazy val schema: profile.SchemaDescription = Array(Appl.schema, Applicants.schema, AProfile.schema, Company.schema, Items.schema, Jobs.schema, Recruiters.schema, RProfile.schema, Users.schema).reduceLeft(_ ++ _)
+  lazy val schema: profile.SchemaDescription = Array(Appl.schema, Applicants.schema, AProfile.schema, Company.schema, Inbox.schema, Items.schema, Jobs.schema, Recruiters.schema, RProfile.schema, Users.schema).reduceLeft(_ ++ _)
   @deprecated("Use .schema instead of .ddl", "3.0")
   def ddl = schema
 
@@ -165,6 +165,32 @@ trait Tables {
   }
   /** Collection-like TableQuery object for table Company */
   lazy val Company = new TableQuery(tag => new Company(tag))
+
+  /** Entity class storing rows of table Inbox
+   *  @param aId Database column a_id SqlType(int4), Default(None)
+   *  @param jId Database column j_id SqlType(int4), Default(None) */
+  case class InboxRow(aId: Option[Int] = None, jId: Option[Int] = None)
+  /** GetResult implicit for fetching InboxRow objects using plain SQL queries */
+  implicit def GetResultInboxRow(implicit e0: GR[Option[Int]]): GR[InboxRow] = GR{
+    prs => import prs._
+    InboxRow.tupled((<<?[Int], <<?[Int]))
+  }
+  /** Table description of table inbox. Objects of this class serve as prototypes for rows in queries. */
+  class Inbox(_tableTag: Tag) extends profile.api.Table[InboxRow](_tableTag, "inbox") {
+    def * = (aId, jId).<>(InboxRow.tupled, InboxRow.unapply)
+
+    /** Database column a_id SqlType(int4), Default(None) */
+    val aId: Rep[Option[Int]] = column[Option[Int]]("a_id", O.Default(None))
+    /** Database column j_id SqlType(int4), Default(None) */
+    val jId: Rep[Option[Int]] = column[Option[Int]]("j_id", O.Default(None))
+
+    /** Foreign key referencing Applicants (database name inbox_a_id_fkey) */
+    lazy val applicantsFk = foreignKey("inbox_a_id_fkey", aId, Applicants)(r => Rep.Some(r.id), onUpdate=ForeignKeyAction.NoAction, onDelete=ForeignKeyAction.Cascade)
+    /** Foreign key referencing Jobs (database name inbox_j_id_fkey) */
+    lazy val jobsFk = foreignKey("inbox_j_id_fkey", jId, Jobs)(r => Rep.Some(r.id), onUpdate=ForeignKeyAction.NoAction, onDelete=ForeignKeyAction.Cascade)
+  }
+  /** Collection-like TableQuery object for table Inbox */
+  lazy val Inbox = new TableQuery(tag => new Inbox(tag))
 
   /** Entity class storing rows of table Items
    *  @param itemId Database column item_id SqlType(serial), AutoInc, PrimaryKey
