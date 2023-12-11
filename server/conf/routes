@@ -32,7 +32,7 @@ GET        /job/:id                         controllers.TigerHire.job(id: Int)
 GET        /apply/:id                        controllers.TigerHire.applicationPage(id: Int)
 
 GET        /viewCompany/:cId                  controllers.TigerHire.viewCompany(cId: Int)
-
++nocsrf
 POST       /submitApplication            controllers.TigerHire.submitApplication
 
 

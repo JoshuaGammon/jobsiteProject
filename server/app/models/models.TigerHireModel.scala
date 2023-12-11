@@ -21,20 +21,9 @@ class TigerHireModel(db: Database)(implicit ec: ExecutionContext) {
         db.run(Applicants += ApplicantsRow(-1, username, password)).map(addCount => addCount > 0)
     }
 
-    def createApplication(aId: Int, jId: Int, answer1: String, answer2: String, answer3: String, experience: String): Future[Boolean] = {
+    def createApplication(aId: Option[Int], jId: Option[Int], answer1: Option[String], answer2: Option[String], answer3: Option[String], experience: Option[String]): Future[Boolean] = {
         db.run(Appl += ApplRow(aId, jId, -1, answer1, answer2, answer3, experience)).map(addCount => addCount > 0)
     }
-
-    // def getCompanyJobs(name: String): Future[Seq[String]] = { //just gets list of all job titles (dk how db looks yet)
-    //     db.run(
-    //         (for {
-    //             company <- Company if company.name === name
-    //             job <- Jobs if job.cId === company.id
-    //         } yield {
-    //             job.salary
-    //         }).result
-    //     )
-    // }
 
     def getJobs(): Future[Seq[JobItem]] = {
         db.run(
@@ -56,14 +45,14 @@ class TigerHireModel(db: Database)(implicit ec: ExecutionContext) {
         ).map (jobs => jobs.map(job => JobItem(job.salary, job.location, job.remote, job.hours, job.cId, job.id, job.name, job.description, job.q1, job.q2, job.q3)))
     }
 
-        def getCompanyInfo(id: Int): Future[Seq[CompanyDescription]] = {
-        db.run(
-            (for {
-                company <- Company if company.id === id
-            } yield {
-                company
-            }).result
-        ).map (companies => companies.map(company => CompanyDescription(company.headquarters.getOrElse(""), company.name.getOrElse(""), company.purpose.getOrElse(""), company.companyType.getOrElse(""),company.id)))
+    def getCompanyInfo(id: Int): Future[Seq[CompanyDescription]] = {
+    db.run(
+        (for {
+            company <- Company if company.id === id
+        } yield {
+            company
+        }).result
+      ).map (companies => companies.map(company => CompanyDescription(company.headquarters.getOrElse(""), company.name.getOrElse(""), company.purpose.getOrElse(""), company.companyType.getOrElse(""),company.id)))
     }
 
 

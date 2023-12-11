@@ -19,7 +19,6 @@
 
         <h4 class="text-heading">Job Application Form</h4>
         <form method="post" action="@routes.TigerHire.submitApplication">
-            @helper.CSRF.formField
             Enter your applicant ID: <input type="number" name="aId" required></input>
             Enter the job ID: <input type="number" name="jId" required></input>
 
