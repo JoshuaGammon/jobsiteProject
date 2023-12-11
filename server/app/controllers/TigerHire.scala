@@ -36,6 +36,10 @@ class TigerHire @Inject()(protected val dbConfigProvider: DatabaseConfigProvider
     Ok(views.html.login(loginForm))
   }
 
+  def logout = Action {
+    Redirect(routes.TigerHire.login).withNewSession
+  }
+
   def recruiterLogin = Action { implicit request =>
     Ok(views.html.recruiterLogin(loginForm))
   }
