@@ -65,7 +65,7 @@ class TigerHireModel(db: Database)(implicit ec: ExecutionContext) {
       } yield {
         job
       }).result
-    ).map (jobs => jobs.map(job => JobItem(job.salary, job.location, job.remote, job.hours, job.cId, job.id, job.name, job.description)))
+    ).map (jobs => jobs.map(job => JobItem(job.salary, job.location, job.remote, job.hours, job.cId, job.id, job.name, job.description, job.q1, job.q2, job.q3)))
   }
 
   def getRInboxJobs(username: String): Future[Seq[JobItem]] = {
