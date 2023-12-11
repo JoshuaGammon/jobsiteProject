@@ -68,3 +68,8 @@ CREATE TABLE appl (
     answer3 varchar(5000),
     experience varchar(5000)
 );
+
+CREATE TABLE inbox (
+    a_id int4 REFERENCES applicants(id) ON DELETE CASCADE,
+    j_id int4 REFERENCES jobs(id) ON DELETE CASCADE
+);
