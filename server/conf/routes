@@ -20,14 +20,17 @@ POST        /validateRecruiterPost      controllers.TigerHire.validateRecruiterP
 GET        /profilee                     controllers.TigerHire.profilee
 GET        /rprofile                     controllers.TigerHire.rprofile
 # GET        /home                         controllers.TigerHire.home
+
 GET        /jobPostList                  controllers.TigerHire.jobPostList
 GET        /rjobPostList                  controllers.TigerHire.rjobPostList
+
 # POST       /updateProfile                controllers.TigerHire.updateProfile
 # GET        /favorites                    controllers.TigerHire.favorites
-# GET       /search                       controllers.TigerHire.searchJobTitle
+GET       /search                       controllers.TigerHire.searchJobTitle
+GET        /job/:cId                  controllers.TigerHire.viewJob(cId: Int)
 
 
- GET        /job                          controllers.TigerHire.job
+ GET        /job/:id                         controllers.TigerHire.job(id: Int)
  GET        /apply                        controllers.TigerHire.applicationPage
 # POST       /submitApplication            controllers.TigerHire.submitApplication
 

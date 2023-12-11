@@ -48,14 +48,24 @@ class TigerHireModel(db: Database)(implicit ec: ExecutionContext) {
     // }
 
     def getJobs(): Future[Seq[JobItem]] = {
-    db.run(
-      (for {
-        job <- Jobs
-      } yield {
-        job
-      }).result
-    ).map (jobs => jobs.map(job => JobItem(job.salary, job.location, job.remote, job.hours, job.cId, job.id, job.name)))
-  }
+        db.run(
+            (for {
+                job <- Jobs
+            } yield {
+                job
+            }).result
+        ).map (jobs => jobs.map(job => JobItem(job.salary, job.location, job.remote, job.hours, job.cId, job.id, job.name)))
+    }
+
+    def getJob(id: Int): Future[Seq[JobItem]] = {
+        db.run(
+            (for {
+                job <- Jobs if job.id === id
+            } yield {
+                job
+            }).result
+        ).map (jobs => jobs.map(job => JobItem(job.salary, job.location, job.remote, job.hours, job.cId, job.id, job.name)))
+    }
 
   def getInboxJobs(username: String): Future[Seq[JobItem]] = {
     db.run(
@@ -106,7 +116,6 @@ def getRProfile(username: String): Future[Seq[RProfileItem]] = {
     ).map (profile => profile.map(profile => RProfileItem(profile.description, profile.location, profile.name, profile.currentPosition, profile.email, profile.pronouns, profile.rId)))
   }
 
-
   def getProfile(username: String): Future[Seq[ProfileItem]] = {
     db.run(
       (for {
@@ -117,7 +126,31 @@ def getRProfile(username: String): Future[Seq[RProfileItem]] = {
       }).result
     ).map(profiles => profiles.map(profiles => ProfileItem(profiles.description, profiles.education, profiles.name, profiles.university, profiles.email, profiles.pronouns, profiles.aId)))
   }
+    
+  def searchJobTitle(query: String): Future[Seq[JobItem]] = {
+        db.run(
+            Jobs.filter(_.name.toLowerCase.like(s"%${query.toLowerCase}%")).result
+        ).map (jobs => jobs.map(job => JobItem(job.salary, job.location, job.remote, job.hours, job.cId, job.id, job.name)))
+        
+ 
+    }    
+//    def getJobsByCompanyId(cId: Long): Future[Seq[JobItem]] = {
+//         db.run(
+//         Jobs.filter(_.cId === cId).result
+//         ).map(jobs => jobs.map(job =>
+//         JobItem(job.salary, job.location, job.remote, job.hours, job.cId, job.id, job.name)
+//         ))
+// }
+    def getJobsBycId(cId: Int): Future[Seq[JobItem]] = {
+    db.run(
+        Jobs.filter(_.cId === cId).result
+    ).map(jobs => jobs.map(job => JobItem(job.salary, job.location, job.remote, job.hours, job.cId, job.id, job.name)))
 }
+
+
+}
+
+
 
 /*
     def createUser(username: String, password: String): Boolean = {

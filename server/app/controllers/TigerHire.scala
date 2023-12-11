@@ -36,7 +36,7 @@ class TigerHire @Inject()(protected val dbConfigProvider: DatabaseConfigProvider
     Ok(views.html.login(loginForm))
   }
 
-    def recruiterLogin = Action { implicit request =>
+  def recruiterLogin = Action { implicit request =>
     Ok(views.html.recruiterLogin(loginForm))
   }
 
@@ -117,16 +117,22 @@ class TigerHire @Inject()(protected val dbConfigProvider: DatabaseConfigProvider
 
  def jobPostList = Action.async { implicit request =>
     model.getJobs().map { jobs => 
-            println("Getting jobs page")
-            Ok(views.html.home(jobs))
-        }//.getOrElse(Redirect(routes.TigerHire.login))
+      Ok(views.html.home(jobs))
     }
+  }
 
   def rjobPostList = Action.async { implicit request =>
     model.getJobs().map { jobs => 
             println("Getting jobs page")
             Ok(views.html.rhome(jobs))
         }//.getOrElse(Redirect(routes.TigerHire.login))
+  }
+    
+   def searchJobTitle = Action.async { implicit request =>
+    val query = request.getQueryString("search").getOrElse("")
+    model.searchJobTitle(query).map { jobPosts => 
+        Ok(views.html.home(jobPosts))
+      }
     }
 
   //  def searchJobTitle = Action { implicit request =>
@@ -169,30 +175,11 @@ class TigerHire @Inject()(protected val dbConfigProvider: DatabaseConfigProvider
 
 //   def favorites = TODO
 
- def job = Action {
-    val jobTitle = "Software Engineer"
-    val company = "Mastercard"
-    val location = "Morrisville, NC"
-    val remoteType = "Hybrid"
-    val salary = "$100,000 - $120,000 per year"
-    val description = "At Mastercard, Software Engineers work directly with Software Development Engineers in small teams and are deeply engaged throughout the entire development process. They are directly responsible for ensuring great products and analytics for our clients. Innovation is also a key facet in the role. Software Quality Engineers are expected to never settle for the status quo in how Mastercard approaches product quality and always look for ways to accelerate or improve the testing tactics taken."
-    val qualifications = List(
-      "Currently enrolled in a bachelor’s degree program majoring in Computer Science, Engineering, or related fields with a graduation date of December 2023 – Spring 2024",
-      "Less than one year of professional experience",
-      "Strong analytic skills and problem-solving mindset; ability to think outside of the box to solve problems",
-      "Demonstrated ability to thrive on small, highly collaborative teams and work in an agile environment",
-      "Leadership experience or heavy involvement in campus clubs, teams, or organizations",
-      "Attention to detail and organizational skill",
-      "Interest in learning and working with new technologies"
-    )
-    Ok(views.html.job(jobTitle, company, location, remoteType, salary, description, qualifications))
-  }
-
-//   /*
-//   def home = Action {
-//     Ok(views.html.home())
-//   }
-//   */
+ def job(id: Int) = Action.async { implicit request =>
+    model.getJob(id).map { job => 
+            Ok(views.html.job(job(0)))
+        }
+    }
 
   def applicationPage = Action {
     val jobTitle = "Software Engineer"
@@ -205,14 +192,35 @@ class TigerHire @Inject()(protected val dbConfigProvider: DatabaseConfigProvider
 
 //   def submitApplication = TODO
 
-  def company = Action {
-    val name = "Mastercard"
-    val purpose = "We work to connect and power an inclusive digital economy that benefits everyone, everywhere by making transactions safe, simple, smart and accessible. Using secure data and networks, partnerships and passion, our innovations and solutions help individuals, financial institutions, governments and businesses realize their greatest potential. Our decency quotient, or DQ, drives our culture and everything we do inside and outside of our company."
-    val companyType = "Payment Processing and Technology"
-    val dateFounded = "1966"
+  def company = Action.async {
+    // val name = "Mastercard"
+    // val purpose = "We work to connect and power an inclusive digital economy that benefits everyone, everywhere by making transactions safe, simple, smart and accessible. Using secure data and networks, partnerships and passion, our innovations and solutions help individuals, financial institutions, governments and businesses realize their greatest potential. Our decency quotient, or DQ, drives our culture and everything we do inside and outside of our company."
+    // val companyType = "Payment Processing and Technology"
+    // val dateFounded = "1966"
 
-    Ok(views.html.company(name, purpose, companyType, dateFounded))
+        model.getJobs().map { jobs => 
+        println("Getting jobs page")
+        Ok(views.html.company(jobs))
+        }//.getOrElse(Redirect(routes.TigerHire.login))
+
   }
+
+  def viewJob(cId: Int) = Action.async { implicit request =>
+  model.getJobsBycId(cId).map { jobs =>
+    Ok(views.html.company(jobs))
+  }
+}
+
+// def companyFiltered = Action.async { implicit request =>
+//   val companyId = re
+  
+//   getJobsByCompanyId(companyId).map { jobs =>
+//     println("Getting jobs page")
+//     Ok(views.html.company(jobs))
+//   }.recover {
+//     case _ => Redirect(routes.TigerHire.login)
+//   }
+// }
 
 //   def createJobPage = TODO
   //  Action {
@@ -263,4 +271,5 @@ class TigerHire @Inject()(protected val dbConfigProvider: DatabaseConfigProvider
   }
 
 //   def updateProfile = TODO
+
 }
