@@ -3,7 +3,7 @@
 @main("Create Job Posting") {
     <h3>Create a New Job Posting</h3>
     
-    <form id="jobForm">
+    <form id="jobForm" method="post" action=""@routes.TigerHire.submitJob>
         <label for="jobTitle">Job Title:</label>
         <input type="text" id="jobTitle" placeholder="Job Title" required>
 

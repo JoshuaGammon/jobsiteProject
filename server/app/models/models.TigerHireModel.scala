@@ -25,6 +25,10 @@ class TigerHireModel(db: Database)(implicit ec: ExecutionContext) {
         db.run(Appl += ApplRow(aId, jId, -1, answer1, answer2, answer3, experience)).map(addCount => addCount > 0)
     }
 
+    def createJob(salary: Option[String], location: Option[String], remote: Option[String], hours: Option[String], name: String, cId: Option[Int], answer1: Option[String], answer2: Option[String], answer3: Option[String], experience: Option[String]): Future[Boolean] = {
+        db.run(Jobs += JobsRow(salary, location, remote, hours, cId, -1, name, experience, answer1, answer2, answer3)).map(addCount => addCount > 0)
+    }
+
     def getJobs(): Future[Seq[JobItem]] = {
         db.run(
             (for {
