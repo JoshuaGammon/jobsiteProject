@@ -193,14 +193,35 @@ class TigerHire @Inject()(protected val dbConfigProvider: DatabaseConfigProvider
 
 //   def submitApplication = TODO
 
-  def company = Action {
-    val name = "Mastercard"
-    val purpose = "We work to connect and power an inclusive digital economy that benefits everyone, everywhere by making transactions safe, simple, smart and accessible. Using secure data and networks, partnerships and passion, our innovations and solutions help individuals, financial institutions, governments and businesses realize their greatest potential. Our decency quotient, or DQ, drives our culture and everything we do inside and outside of our company."
-    val companyType = "Payment Processing and Technology"
-    val dateFounded = "1966"
+  def company = Action.async {
+    // val name = "Mastercard"
+    // val purpose = "We work to connect and power an inclusive digital economy that benefits everyone, everywhere by making transactions safe, simple, smart and accessible. Using secure data and networks, partnerships and passion, our innovations and solutions help individuals, financial institutions, governments and businesses realize their greatest potential. Our decency quotient, or DQ, drives our culture and everything we do inside and outside of our company."
+    // val companyType = "Payment Processing and Technology"
+    // val dateFounded = "1966"
 
-    Ok(views.html.company(name, purpose, companyType, dateFounded))
+        model.getJobs().map { jobs => 
+        println("Getting jobs page")
+        Ok(views.html.company(jobs))
+        }//.getOrElse(Redirect(routes.TigerHire.login))
+
   }
+
+  def viewJob(cId: Int) = Action.async { implicit request =>
+  model.getJobsBycId(cId).map { jobs =>
+    Ok(views.html.company(jobs))
+  }
+}
+
+// def companyFiltered = Action.async { implicit request =>
+//   val companyId = re
+  
+//   getJobsByCompanyId(companyId).map { jobs =>
+//     println("Getting jobs page")
+//     Ok(views.html.company(jobs))
+//   }.recover {
+//     case _ => Redirect(routes.TigerHire.login)
+//   }
+// }
 
 //   def createJobPage = TODO
   //  Action {

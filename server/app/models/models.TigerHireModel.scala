@@ -61,8 +61,24 @@ class TigerHireModel(db: Database)(implicit ec: ExecutionContext) {
         db.run(
             Jobs.filter(_.name.toLowerCase.like(s"%${query.toLowerCase}%")).result
         ).map (jobs => jobs.map(job => JobItem(job.salary, job.location, job.remote, job.hours, job.cId, job.id, job.name)))
-    }
+        
+ 
+    }    
+//    def getJobsByCompanyId(cId: Long): Future[Seq[JobItem]] = {
+//         db.run(
+//         Jobs.filter(_.cId === cId).result
+//         ).map(jobs => jobs.map(job =>
+//         JobItem(job.salary, job.location, job.remote, job.hours, job.cId, job.id, job.name)
+//         ))
+// }
+    def getJobsBycId(cId: Int): Future[Seq[JobItem]] = {
+    db.run(
+        Jobs.filter(_.cId === cId).result
+    ).map(jobs => jobs.map(job => JobItem(job.salary, job.location, job.remote, job.hours, job.cId, job.id, job.name)))
 }
+
+}
+
 
 
 /*

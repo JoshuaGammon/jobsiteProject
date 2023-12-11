@@ -23,6 +23,7 @@ GET        /jobPostList                  controllers.TigerHire.jobPostList
 # POST       /updateProfile                controllers.TigerHire.updateProfile
 # GET        /favorites                    controllers.TigerHire.favorites
 GET       /search                       controllers.TigerHire.searchJobTitle
+GET        /job/:cId                  controllers.TigerHire.viewJob(cId: Int)
 
 
  GET        /job                          controllers.TigerHire.job
