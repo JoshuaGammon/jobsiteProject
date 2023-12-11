@@ -229,10 +229,10 @@ class TigerHire @Inject()(protected val dbConfigProvider: DatabaseConfigProvider
       val answer1 = args("question1").head
       val answer2 = args("question2").head
       val answer3 = args("question3").head
-      val experience = args("experience").head
+      val experience = args("description").head
       model.createJob(Some(salary), Some(location), Some(remote), Some(hours), name, Some(cId.toInt), Some(answer1), Some(answer2), Some(answer3), Some(experience)).map { submitted =>
         if(submitted){
-          Redirect(routes.TigerHire.createJobPage)
+          Redirect(routes.TigerHire.rjobPostList)
         } else {
           Redirect(routes.TigerHire.createJobPage).flashing("error" ->"Couldn't submit job.")
         }
