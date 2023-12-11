@@ -19,7 +19,11 @@
         <div class="text-info">
             <strong>Estimated Salary:</strong> @job.salary
         </div>
-        <a href = "@routes.TigerHire.applicationPage">
+        <div class="text-info">
+            <strong>Job Description:</strong> @job.description
+        </div>
+        <br>
+        <a href = "@routes.TigerHire.applicationPage(job.id)">
         <button>
             Apply
           </button>

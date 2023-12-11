@@ -16,6 +16,7 @@ import slick.jdbc.JdbcProfile
 import slick.jdbc.PostgresProfile.api._
 
 case class LoginData(username: String, password: String)
+case class ApplicationData(aId: Int, jId: Int, answer1: String, answer2: String, answer3: String, experience: String)
 
 @Singleton
 class TigerHire @Inject()(protected val dbConfigProvider: DatabaseConfigProvider, cc: MessagesControllerComponents)(implicit ec: ExecutionContext)
@@ -181,16 +182,39 @@ class TigerHire @Inject()(protected val dbConfigProvider: DatabaseConfigProvider
         }
     }
 
-  def applicationPage = Action {
-    val jobTitle = "Software Engineer"
-    val company = "Mastercard"
-    val location = "Morrisville, NC"
-    val remoteType = "Hybrid"
+  val applicationForm = Form(mapping(
+  "aId" -> number, 
+  "jId" -> number,
+  "answer1" -> text,
+  "answer2" -> text,
+  "answer3" -> text,
+  "experience" -> text
+  )(ApplicationData.apply)(ApplicationData.unapply))
 
-    Ok(views.html.applicationPage(jobTitle, company, location, remoteType))
+  def applicationPage(id: Int) = Action.async { implicit request =>
+    model.getJob(id).map { job =>
+      Ok(views.html.applicationPage(job(0)))
+    }
   }
 
-//   def submitApplication = TODO
+  def submitApplication = Action.async { implicit request => 
+    val postVals = request.body.asFormUrlEncoded
+    postVals.map { args =>
+      val aId = args("aId").head
+      val jId = args("jId").head
+      val answer1 = args("answer1").head
+      val answer2 = args("answer2").head
+      val answer3 = args("answer3").head
+      val experience = args("experience").head
+      model.createApplication(Some(aId.toInt), Some(jId.toInt), Some(answer1), Some(answer2), Some(answer3), Some(experience)).map { submitted =>
+        if(submitted){
+          Redirect(routes.TigerHire.jobPostList)
+        } else {
+          Redirect(routes.TigerHire.login).flashing("error" ->"Couldn't submit application.")
+        }
+      }
+    }.getOrElse(Future.successful(Redirect(routes.TigerHire.jobPostList)))
+  }
 
   // def company = Action.async {
   //   // val name = "Mastercard"

@@ -29,11 +29,11 @@ GET        /rjobPostList                  controllers.TigerHire.rjobPostList
 GET       /search                       controllers.TigerHire.searchJobTitle
 
 GET        /job/:id                         controllers.TigerHire.job(id: Int)
+GET        /apply/:id                        controllers.TigerHire.applicationPage(id: Int)
 
 GET        /viewCompany/:cId                  controllers.TigerHire.viewCompany(cId: Int)
-
- GET        /apply                        controllers.TigerHire.applicationPage
-# POST       /submitApplication            controllers.TigerHire.submitApplication
++nocsrf
+POST       /submitApplication            controllers.TigerHire.submitApplication
 
 
 # GET        /createJob                    controllers.TigerHire.createJobPage
