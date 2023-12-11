@@ -66,7 +66,35 @@ class TigerHireModel(db: Database)(implicit ec: ExecutionContext) {
             }).result
         ).map (jobs => jobs.map(job => JobItem(job.salary, job.location, job.remote, job.hours, job.cId, job.id, job.name)))
     }
+
+  def getProfile(username: String): Future[Seq[ProfileItem]] = {
+    db.run(
+      (for {
+        applicant <- Applicants if applicant.username === username
+        profile <- AProfile if profile.aId === applicant.id
+      } yield {
+        profile
+      }).result
+    ).map (profile => profile.map(profile => ProfileItem(profile.description, profile.education, profile.name, profile.university, profile.email, profile.pronouns, profile.aId)))
+  }
+
+  def getRProfile(username: String): Future[Seq[RProfileItem]] = {
+    db.run(
+      (for {
+        recruiter <- Recruiters if recruiter.username === username
+        profile <- RProfile if profile.rId === recruiter.id
+      } yield {
+        profile
+      }).result
+    ).map (profile => profile.map(profile => RProfileItem(profile.description, profile.location, profile.name, profile.currentPosition, profile.email, profile.pronouns, profile.rId)))
+  }
+    def searchJobTitle(query: String): Future[Seq[JobItem]] = {
+        db.run(
+            Jobs.filter(_.name.toLowerCase.like(s"%${query.toLowerCase}%")).result
+        ).map (jobs => jobs.map(job => JobItem(job.salary, job.location, job.remote, job.hours, job.cId, job.id, job.name)))
+    }
 }
+
 
 /*
     def createUser(username: String, password: String): Boolean = {
