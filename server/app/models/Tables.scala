@@ -14,9 +14,52 @@ trait Tables {
   import slick.jdbc.{GetResult => GR}
 
   /** DDL for all tables. Call .create to execute. */
-  lazy val schema: profile.SchemaDescription = Array(Applicants.schema, AProfile.schema, Company.schema, Inbox.schema, Items.schema, Jobs.schema, Recruiters.schema, RProfile.schema, Users.schema).reduceLeft(_ ++ _)
+  lazy val schema: profile.SchemaDescription = Array(Appl.schema, Applicants.schema, AProfile.schema, Company.schema, Items.schema, Jobs.schema, Recruiters.schema, RProfile.schema, Users.schema).reduceLeft(_ ++ _)
   @deprecated("Use .schema instead of .ddl", "3.0")
   def ddl = schema
+
+  /** Entity class storing rows of table Appl
+   *  @param aId Database column a_id SqlType(int4), Default(None)
+   *  @param jId Database column j_id SqlType(int4), Default(None)
+   *  @param id Database column id SqlType(serial), AutoInc, PrimaryKey
+   *  @param answer1 Database column answer1 SqlType(varchar), Length(5000,true), Default(None)
+   *  @param answer2 Database column answer2 SqlType(varchar), Length(5000,true), Default(None)
+   *  @param answer3 Database column answer3 SqlType(varchar), Length(5000,true), Default(None)
+   *  @param experience Database column experience SqlType(varchar), Length(5000,true), Default(None) */
+  case class ApplRow(aId: Option[Int] = None, jId: Option[Int] = None, id: Int, answer1: Option[String] = None, answer2: Option[String] = None, answer3: Option[String] = None, experience: Option[String] = None)
+  /** GetResult implicit for fetching ApplRow objects using plain SQL queries */
+  implicit def GetResultApplRow(implicit e0: GR[Option[Int]], e1: GR[Int], e2: GR[Option[String]]): GR[ApplRow] = GR{
+    prs => import prs._
+    ApplRow.tupled((<<?[Int], <<?[Int], <<[Int], <<?[String], <<?[String], <<?[String], <<?[String]))
+  }
+  /** Table description of table appl. Objects of this class serve as prototypes for rows in queries. */
+  class Appl(_tableTag: Tag) extends profile.api.Table[ApplRow](_tableTag, "appl") {
+    def * = (aId, jId, id, answer1, answer2, answer3, experience).<>(ApplRow.tupled, ApplRow.unapply)
+    /** Maps whole row to an option. Useful for outer joins. */
+    def ? = ((aId, jId, Rep.Some(id), answer1, answer2, answer3, experience)).shaped.<>({r=>import r._; _3.map(_=> ApplRow.tupled((_1, _2, _3.get, _4, _5, _6, _7)))}, (_:Any) =>  throw new Exception("Inserting into ? projection not supported."))
+
+    /** Database column a_id SqlType(int4), Default(None) */
+    val aId: Rep[Option[Int]] = column[Option[Int]]("a_id", O.Default(None))
+    /** Database column j_id SqlType(int4), Default(None) */
+    val jId: Rep[Option[Int]] = column[Option[Int]]("j_id", O.Default(None))
+    /** Database column id SqlType(serial), AutoInc, PrimaryKey */
+    val id: Rep[Int] = column[Int]("id", O.AutoInc, O.PrimaryKey)
+    /** Database column answer1 SqlType(varchar), Length(5000,true), Default(None) */
+    val answer1: Rep[Option[String]] = column[Option[String]]("answer1", O.Length(5000,varying=true), O.Default(None))
+    /** Database column answer2 SqlType(varchar), Length(5000,true), Default(None) */
+    val answer2: Rep[Option[String]] = column[Option[String]]("answer2", O.Length(5000,varying=true), O.Default(None))
+    /** Database column answer3 SqlType(varchar), Length(5000,true), Default(None) */
+    val answer3: Rep[Option[String]] = column[Option[String]]("answer3", O.Length(5000,varying=true), O.Default(None))
+    /** Database column experience SqlType(varchar), Length(5000,true), Default(None) */
+    val experience: Rep[Option[String]] = column[Option[String]]("experience", O.Length(5000,varying=true), O.Default(None))
+
+    /** Foreign key referencing Applicants (database name appl_a_id_fkey) */
+    lazy val applicantsFk = foreignKey("appl_a_id_fkey", aId, Applicants)(r => Rep.Some(r.id), onUpdate=ForeignKeyAction.NoAction, onDelete=ForeignKeyAction.Cascade)
+    /** Foreign key referencing Jobs (database name appl_j_id_fkey) */
+    lazy val jobsFk = foreignKey("appl_j_id_fkey", jId, Jobs)(r => Rep.Some(r.id), onUpdate=ForeignKeyAction.NoAction, onDelete=ForeignKeyAction.Cascade)
+  }
+  /** Collection-like TableQuery object for table Appl */
+  lazy val Appl = new TableQuery(tag => new Appl(tag))
 
   /** Entity class storing rows of table Applicants
    *  @param id Database column id SqlType(serial), AutoInc, PrimaryKey
@@ -123,32 +166,6 @@ trait Tables {
   /** Collection-like TableQuery object for table Company */
   lazy val Company = new TableQuery(tag => new Company(tag))
 
-  /** Entity class storing rows of table Inbox
-   *  @param aId Database column a_id SqlType(int4), Default(None)
-   *  @param jId Database column j_id SqlType(int4), Default(None) */
-  case class InboxRow(aId: Option[Int] = None, jId: Option[Int] = None)
-  /** GetResult implicit for fetching InboxRow objects using plain SQL queries */
-  implicit def GetResultInboxRow(implicit e0: GR[Option[Int]]): GR[InboxRow] = GR{
-    prs => import prs._
-    InboxRow.tupled((<<?[Int], <<?[Int]))
-  }
-  /** Table description of table inbox. Objects of this class serve as prototypes for rows in queries. */
-  class Inbox(_tableTag: Tag) extends profile.api.Table[InboxRow](_tableTag, "inbox") {
-    def * = (aId, jId).<>(InboxRow.tupled, InboxRow.unapply)
-
-    /** Database column a_id SqlType(int4), Default(None) */
-    val aId: Rep[Option[Int]] = column[Option[Int]]("a_id", O.Default(None))
-    /** Database column j_id SqlType(int4), Default(None) */
-    val jId: Rep[Option[Int]] = column[Option[Int]]("j_id", O.Default(None))
-
-    /** Foreign key referencing Applicants (database name inbox_a_id_fkey) */
-    lazy val applicantsFk = foreignKey("inbox_a_id_fkey", aId, Applicants)(r => Rep.Some(r.id), onUpdate=ForeignKeyAction.NoAction, onDelete=ForeignKeyAction.Cascade)
-    /** Foreign key referencing Jobs (database name inbox_j_id_fkey) */
-    lazy val jobsFk = foreignKey("inbox_j_id_fkey", jId, Jobs)(r => Rep.Some(r.id), onUpdate=ForeignKeyAction.NoAction, onDelete=ForeignKeyAction.Cascade)
-  }
-  /** Collection-like TableQuery object for table Inbox */
-  lazy val Inbox = new TableQuery(tag => new Inbox(tag))
-
   /** Entity class storing rows of table Items
    *  @param itemId Database column item_id SqlType(serial), AutoInc, PrimaryKey
    *  @param userId Database column user_id SqlType(int4), Default(None)
@@ -185,18 +202,22 @@ trait Tables {
    *  @param hours Database column hours SqlType(varchar), Length(100,true), Default(None)
    *  @param cId Database column c_id SqlType(int4), Default(None)
    *  @param id Database column id SqlType(serial), AutoInc, PrimaryKey
-   *  @param name Database column name SqlType(varchar), Length(50,true) */
-  case class JobsRow(salary: Option[String] = None, location: Option[String] = None, remote: Option[String] = None, hours: Option[String] = None, cId: Option[Int] = None, id: Int, name: String)
+   *  @param name Database column name SqlType(varchar), Length(50,true)
+   *  @param description Database column description SqlType(varchar), Length(5000,true), Default(None)
+   *  @param q1 Database column q1 SqlType(varchar), Length(1000,true), Default(None)
+   *  @param q2 Database column q2 SqlType(varchar), Length(1000,true), Default(None)
+   *  @param q3 Database column q3 SqlType(varchar), Length(1000,true), Default(None) */
+  case class JobsRow(salary: Option[String] = None, location: Option[String] = None, remote: Option[String] = None, hours: Option[String] = None, cId: Option[Int] = None, id: Int, name: String, description: Option[String] = None, q1: Option[String] = None, q2: Option[String] = None, q3: Option[String] = None)
   /** GetResult implicit for fetching JobsRow objects using plain SQL queries */
   implicit def GetResultJobsRow(implicit e0: GR[Option[String]], e1: GR[Option[Int]], e2: GR[Int], e3: GR[String]): GR[JobsRow] = GR{
     prs => import prs._
-    JobsRow.tupled((<<?[String], <<?[String], <<?[String], <<?[String], <<?[Int], <<[Int], <<[String]))
+    JobsRow.tupled((<<?[String], <<?[String], <<?[String], <<?[String], <<?[Int], <<[Int], <<[String], <<?[String], <<?[String], <<?[String], <<?[String]))
   }
   /** Table description of table jobs. Objects of this class serve as prototypes for rows in queries. */
   class Jobs(_tableTag: Tag) extends profile.api.Table[JobsRow](_tableTag, "jobs") {
-    def * = (salary, location, remote, hours, cId, id, name).<>(JobsRow.tupled, JobsRow.unapply)
+    def * = (salary, location, remote, hours, cId, id, name, description, q1, q2, q3).<>(JobsRow.tupled, JobsRow.unapply)
     /** Maps whole row to an option. Useful for outer joins. */
-    def ? = ((salary, location, remote, hours, cId, Rep.Some(id), Rep.Some(name))).shaped.<>({r=>import r._; _6.map(_=> JobsRow.tupled((_1, _2, _3, _4, _5, _6.get, _7.get)))}, (_:Any) =>  throw new Exception("Inserting into ? projection not supported."))
+    def ? = ((salary, location, remote, hours, cId, Rep.Some(id), Rep.Some(name), description, q1, q2, q3)).shaped.<>({r=>import r._; _6.map(_=> JobsRow.tupled((_1, _2, _3, _4, _5, _6.get, _7.get, _8, _9, _10, _11)))}, (_:Any) =>  throw new Exception("Inserting into ? projection not supported."))
 
     /** Database column salary SqlType(varchar), Length(50,true), Default(None) */
     val salary: Rep[Option[String]] = column[Option[String]]("salary", O.Length(50,varying=true), O.Default(None))
@@ -212,6 +233,14 @@ trait Tables {
     val id: Rep[Int] = column[Int]("id", O.AutoInc, O.PrimaryKey)
     /** Database column name SqlType(varchar), Length(50,true) */
     val name: Rep[String] = column[String]("name", O.Length(50,varying=true))
+    /** Database column description SqlType(varchar), Length(5000,true), Default(None) */
+    val description: Rep[Option[String]] = column[Option[String]]("description", O.Length(5000,varying=true), O.Default(None))
+    /** Database column q1 SqlType(varchar), Length(1000,true), Default(None) */
+    val q1: Rep[Option[String]] = column[Option[String]]("q1", O.Length(1000,varying=true), O.Default(None))
+    /** Database column q2 SqlType(varchar), Length(1000,true), Default(None) */
+    val q2: Rep[Option[String]] = column[Option[String]]("q2", O.Length(1000,varying=true), O.Default(None))
+    /** Database column q3 SqlType(varchar), Length(1000,true), Default(None) */
+    val q3: Rep[Option[String]] = column[Option[String]]("q3", O.Length(1000,varying=true), O.Default(None))
 
     /** Foreign key referencing Company (database name jobs_c_id_fkey) */
     lazy val companyFk = foreignKey("jobs_c_id_fkey", cId, Company)(r => Rep.Some(r.id), onUpdate=ForeignKeyAction.NoAction, onDelete=ForeignKeyAction.Cascade)
