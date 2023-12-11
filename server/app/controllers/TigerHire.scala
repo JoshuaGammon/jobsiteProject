@@ -68,7 +68,7 @@ class TigerHire @Inject()(protected val dbConfigProvider: DatabaseConfigProvider
       val password = args("password").head 
       model.validateRecruiters(username,password).map { userExists =>
         if(userExists){
-          Redirect(routes.TigerHire.rjobPostList).withSession("username" -> username)
+          Redirect(routes.TigerHire.profileList).withSession("username" -> username)
         } else {
           Redirect(routes.TigerHire.login).flashing("error" -> "Invalid username/password combination.")
         }
@@ -123,12 +123,12 @@ class TigerHire @Inject()(protected val dbConfigProvider: DatabaseConfigProvider
     }
   }
 
-  def rjobPostList = Action.async { implicit request =>
-    model.getJobs().map { jobs => 
-            println("Getting jobs page")
-            Ok(views.html.rhome(jobs))
-        }//.getOrElse(Redirect(routes.TigerHire.login))
-  }
+  // def rjobPostList = Action.async { implicit request =>
+  //   model.getJobs().map { jobs => 
+  //           println("Getting jobs page")
+  //           Ok(views.html.rhome(jobs))
+  //       }//.getOrElse(Redirect(routes.TigerHire.login))
+  // }
     
    def searchJobTitle = Action.async { implicit request =>
     val query = request.getQueryString("search").getOrElse("")
@@ -232,7 +232,7 @@ class TigerHire @Inject()(protected val dbConfigProvider: DatabaseConfigProvider
       val experience = args("description").head
       model.createJob(Some(salary), Some(location), Some(remote), Some(hours), name, Some(cId.toInt), Some(answer1), Some(answer2), Some(answer3), Some(experience)).map { submitted =>
         if(submitted){
-          Redirect(routes.TigerHire.rjobPostList)
+          Redirect(routes.TigerHire.profileList)
         } else {
           Redirect(routes.TigerHire.createJobPage).flashing("error" ->"Couldn't submit job.")
         }
@@ -305,12 +305,12 @@ class TigerHire @Inject()(protected val dbConfigProvider: DatabaseConfigProvider
       val aId = args("aId").head
       model.sendInvite(Some(aId.toInt), Some(jId.toInt)).map { submitted =>
         if(submitted){
-          Redirect(routes.TigerHire.rjobPostList)
+          Redirect(routes.TigerHire.profileList)
         } else {
           Redirect(routes.TigerHire.login).flashing("error" ->"Couldn't submit invite.")
         }
       }
-    }.getOrElse(Future.successful(Redirect(routes.TigerHire.rjobPostList)))
+    }.getOrElse(Future.successful(Redirect(routes.TigerHire.profileList)))
   }
 
   
@@ -340,6 +340,12 @@ class TigerHire @Inject()(protected val dbConfigProvider: DatabaseConfigProvider
     val username = request.session.get("username").getOrElse("tjarrett")
     model.rApplications(username).map { applicantList => 
       Ok(views.html.rapplication(applicantList))
+    }
+  }
+
+  def profileList = Action.async { implicit request =>
+    model.profileList().map { profiles =>
+      Ok(views.html.rhome(profiles))  
     }
   }
 

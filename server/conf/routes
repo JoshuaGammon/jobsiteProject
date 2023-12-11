@@ -9,6 +9,8 @@ GET        /recruiterLogin              controllers.TigerHire.recruiterLogin
 
 GET       /rApplication                 controllers.TigerHire.rApplication
 
+GET       /profileList                  controllers.TigerHire.profileList
+
 
 
 # GET        /validateGet1                 controllers.TigerHire.validateLoginGet(username,password)
@@ -26,7 +28,7 @@ GET        /rprofile                     controllers.TigerHire.rprofile
 # GET        /home                         controllers.TigerHire.home
 
 GET        /jobPostList                  controllers.TigerHire.jobPostList
-GET        /rjobPostList                  controllers.TigerHire.rjobPostList
+# GET        /rjobPostList                  controllers.TigerHire.rjobPostList
 
 # POST       /updateProfile                controllers.TigerHire.updateProfile
 # GET        /favorites                    controllers.TigerHire.favorites

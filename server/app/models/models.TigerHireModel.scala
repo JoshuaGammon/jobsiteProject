@@ -33,6 +33,16 @@ class TigerHireModel(db: Database)(implicit ec: ExecutionContext) {
         db.run(Inbox += InboxRow(aId, jId)).map(addCount => addCount > 0)
     }
 
+    def profileList() : Future[Seq[ProfileItem]] = {
+      db.run(
+        (for {
+          profiles <- AProfile
+        } yield {
+          profiles
+        }).result
+      ).map(profiles => profiles.map(profiles => ProfileItem(profiles.description, profiles.education, profiles.name, profiles.university, profiles.email, profiles.pronouns, profiles.aId)))
+    }
+
     def getJobs(): Future[Seq[JobItem]] = {
         db.run(
             (for {
