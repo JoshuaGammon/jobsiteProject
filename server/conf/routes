@@ -35,11 +35,11 @@ GET        /viewCompany/:cId                  controllers.TigerHire.viewCompany(
 +nocsrf
 POST       /submitApplication            controllers.TigerHire.submitApplication
 
++nocsrf
+POST      /submitJob                      controllers.TigerHire.submitJob
 
 GET        /createJobPage                    controllers.TigerHire.createJobPage
 
-+nocsrf
-POST      /submitJob                      controllers.TigerHire.submitJob
 # POST       /submitJobPosting             controllers.TigerHire.submitJobPosting
 
  GET        /inbox                        controllers.TigerHire.inbox
