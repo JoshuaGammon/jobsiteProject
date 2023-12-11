@@ -20,7 +20,7 @@
         <h4 class="text-heading">Job Application Form</h4>
         <form method="post" action="@routes.TigerHire.submitApplication">
             Enter your applicant ID: <input type="number" name="aId" required></input>
-            Enter the job ID: <input type="number" name="jId" required></input>
+            <input type="hidden" value="@job.id" name="jId" required></input>
 
             <div class="form-group">
                 <label for="experience">Please enter your relevant experience:</label>

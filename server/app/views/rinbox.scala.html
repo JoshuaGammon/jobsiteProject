@@ -1,35 +1,24 @@
-@(username: String, jobList: Seq[JobItem])
+@(username: String, applicantList: Seq[ApplicantInfo])
 
-@navbar("Inbox")
+@rnavbar("Inbox")
 
 @main("Inbox") {
 
   <h2>Welcome to your company's jobs, @username!</h2>
 
-  @for(job <- jobList){
-   
-    <div class="info-container">
-        
-        <div class="text-info">
-            <a href = "@routes.TigerHire.job(job.id)"><h1>@job.name</h1></a>
+  <h4 class="text-heading">Job Application Form</h4>
+        <form method="post" action="@routes.TigerHire.sendInvite">
+            Who would you like to send the application to: 
+            <select name="aId" required>
+                @for(applicant <- applicantList) {
+                    <option value="@applicant.aId">@applicant.name</option>
+                }
+            </select>
+            Enter the job ID: <input type="number" name="jId" required></input>
             
-  
-        </div>    
 
-        <div class="text-info">
-         <a href = "@routes.TigerHire.viewCompany(job.cId.getOrElse(-1))">@job.id</a>
-        </div>
-        <div class="text-info">
-         @job.location
-        </div>
-        <div class="text-info">
-         @job.remote
-        </div>
-        <div class="text-info">
-         Salary: @job.salary
-        </div>
+            <input type="submit"></input>
+        </form> 
 
-        </div>
-    </div>
-}
+
 }

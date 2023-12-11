@@ -44,7 +44,8 @@ POST      /submitJob                      controllers.TigerHire.submitJob
 
  GET        /inbox                        controllers.TigerHire.inbox
   GET        /rinbox                        controllers.TigerHire.rinbox
-# POST       /sendMessage                  controllers.TigerHire.sendMessage
++nocsrf
+POST       /sendInvite                  controllers.TigerHire.sendInvite
 
 # Prefix must match `play.assets.urlPrefix`
 GET        /assets/*file                 controllers.Assets.at(file)

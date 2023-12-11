@@ -29,6 +29,10 @@ class TigerHireModel(db: Database)(implicit ec: ExecutionContext) {
         db.run(Jobs += JobsRow(salary, location, remote, hours, cId, -1, name, experience, answer1, answer2, answer3)).map(addCount => addCount > 0)
     }
 
+    def sendInvite(aId: Option[Int], jId: Option[Int]): Future[Boolean] = {
+        db.run(Inbox += InboxRow(aId, jId)).map(addCount => addCount > 0)
+    }
+
     def getJobs(): Future[Seq[JobItem]] = {
         db.run(
             (for {
@@ -135,28 +139,20 @@ def getRProfile(username: String): Future[Seq[RProfileItem]] = {
 //         ))
 // }
     def getJobsBycId(cId: Int): Future[Seq[JobItem]] = {
-    db.run(
-        Jobs.filter(_.cId === cId).result
-    ).map(jobs => jobs.map(job => JobItem(job.salary, job.location, job.remote, job.hours, job.cId, job.id, job.name, job.description, job.q1, job.q2, job.q3)))
-}
-
-
-}
-
-
-
-/*
-    def addJobPosting(salary: String, location: String, remote: String, hours: String, cId: Int, id: Int): Future[Int] = {
-        db.run(Jobs += JobsRow(salary, location, remote, hours, cId, -1))
+      db.run(
+          Jobs.filter(_.cId === cId).result
+      ).map(jobs => jobs.map(job => JobItem(job.salary, job.location, job.remote, job.hours, job.cId, job.id, job.name, job.description, job.q1, job.q2, job.q3)))
     }
 
-}   */
+    def getApplicantList(): Future[Seq[ApplicantInfo]] = {
+      db.run(
+        (for {
+          profiles <- AProfile
+        } yield {
+          profiles
+        }).result
+      ).map(profiles => profiles.map(profiles => ApplicantInfo(profiles.name, profiles.aId)))
+    }
+    
 
-    // def getPrivateMessage(username: String): Seq[String] = {
-    //     inboxMessages.get(username).getOrElse(Nil)
-    // }
-
-    // def addPrivateMessage(username: String, message: String): Unit = {
-    //     inboxMessages(username) = message :: inboxMessages.get(username).getOrElse(Nil)
-    // }
-
+}

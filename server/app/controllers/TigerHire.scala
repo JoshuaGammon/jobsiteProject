@@ -17,6 +17,7 @@ import slick.jdbc.PostgresProfile.api._
 
 case class LoginData(username: String, password: String)
 case class ApplicationData(aId: Int, jId: Int, answer1: String, answer2: String, answer3: String, experience: String)
+case class InviteData(aId: Int, jId: Int)
 
 @Singleton
 class TigerHire @Inject()(protected val dbConfigProvider: DatabaseConfigProvider, cc: MessagesControllerComponents)(implicit ec: ExecutionContext)
@@ -278,12 +279,6 @@ class TigerHire @Inject()(protected val dbConfigProvider: DatabaseConfigProvider
    Ok(views.html.createJobPage())
   }
 
-  //def submitJobPosting = TODO
-  //   withSessionUserid { userid =>
-  //     TigerHireModel.addJobPosting(salary, location, remote, hours, cId, id).map(count => Ok(Json.toJson(count > 0)))
-  //   }
-  // }
-
   def inbox = Action.async { implicit request =>
     val username = request.session.get("username").getOrElse("tjarrett")
     model.getInboxJobs(username).map { jobs => 
@@ -293,9 +288,29 @@ class TigerHire @Inject()(protected val dbConfigProvider: DatabaseConfigProvider
 
   def rinbox = Action.async { implicit request =>
     val username = request.session.get("username").getOrElse("tjarrett")
-    model.getRInboxJobs(username).map { jobs => 
-      Ok(views.html.rinbox(username, jobs))
+    model.getApplicantList().map { applicantList => 
+      Ok(views.html.rinbox(username, applicantList))
     }
+  }
+
+  // val inviteForm = Form(mapping(
+  // "aId" -> number, 
+  // "jId" -> number
+  // )(InviteData.apply)(InviteData.unapply))
+
+  def sendInvite() = Action.async { implicit request => 
+    val postVals = request.body.asFormUrlEncoded
+    postVals.map { args =>
+      val jId = args("jId").head
+      val aId = args("aId").head
+      model.sendInvite(Some(aId.toInt), Some(jId.toInt)).map { submitted =>
+        if(submitted){
+          Redirect(routes.TigerHire.rjobPostList)
+        } else {
+          Redirect(routes.TigerHire.login).flashing("error" ->"Couldn't submit invite.")
+        }
+      }
+    }.getOrElse(Future.successful(Redirect(routes.TigerHire.rjobPostList)))
   }
 
   
@@ -320,7 +335,5 @@ class TigerHire @Inject()(protected val dbConfigProvider: DatabaseConfigProvider
   def newUser = Action { 
     Ok(views.html.newUser()) 
   }
-
-//   def updateProfile = TODO
 
 }

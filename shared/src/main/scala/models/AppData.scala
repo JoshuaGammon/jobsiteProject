@@ -10,3 +10,5 @@ case class ProfileItem(description: String, education: String, name: String, uni
 case class RProfileItem(description: Option[String], location: Option[String], name: Option[String], currentPos: Option[String], email: Option[String], pronouns: Option[String], rId: Option[Int])
 
 case class CompanyDescription(hq: String, companyName: String, purpose: String, companyType: String, id: Int)
+
+case class ApplicantInfo(name: String, aId: Option[Int])
