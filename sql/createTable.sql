@@ -49,3 +49,8 @@ CREATE TABLE a_profile (
     pronouns varchar(50),
     a_id int4 REFERENCES applicants(id) ON DELETE CASCADE
 );
+
+CREATE TABLE inbox (
+    a_id int4 REFERENCES applicants(id) ON DELETE CASCADE,
+    j_id int4 REFERENCES jobs(id) ON DELETE CASCADE
+);

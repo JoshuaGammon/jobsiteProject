@@ -37,6 +37,7 @@ GET        /rjobPostList                  controllers.TigerHire.rjobPostList
 # POST       /submitJobPosting             controllers.TigerHire.submitJobPosting
 
  GET        /inbox                        controllers.TigerHire.inbox
+  GET        /rinbox                        controllers.TigerHire.rinbox
 # POST       /sendMessage                  controllers.TigerHire.sendMessage
 
 # Prefix must match `play.assets.urlPrefix`
