@@ -197,24 +197,30 @@ class TigerHire @Inject()(protected val dbConfigProvider: DatabaseConfigProvider
     }
   }
 
-  def submitApplication = Action.async { implicit request => 
-    val postVals = request.body.asFormUrlEncoded
-    postVals.map { args =>
-      val aId = args("aId").head
-      val jId = args("jId").head
-      val answer1 = args("answer1").head
-      val answer2 = args("answer2").head
-      val answer3 = args("answer3").head
-      val experience = args("experience").head
-      model.createApplication(aId, jId, answer1, answer2, answer3, experience).map { submitted =>
-        if(submitted){
-          Redirect(routes.TigerHire.jobPostList)
-        } else {
-          Redirect(routes.TigerHire.login).flashing("error" ->"Couldn't submit application.")
+  def submitApplication = Action.async { implicit request =>
+  val postVals = request.body.asFormUrlEncoded
+  postVals.map { args =>
+    val aId = args("aId").headOption.flatMap(s => Try(s.toInt).toOption)
+    val jId = args("jId").headOption.flatMap(s => Try(s.toInt).toOption)
+    val answer1 = args("answer1").head
+    val answer2 = args("answer2").head
+    val answer3 = args("answer3").head
+    val experience = args("experience").head
+
+    (aId, jId) match {
+      case (Some(aIdInt), Some(jIdInt)) =>
+        model.createApplication(aIdInt, jIdInt, answer1, answer2, answer3, experience).map { submitted =>
+          if (submitted) {
+            Redirect(routes.TigerHire.jobPostList)
+          } else {
+            Redirect(routes.TigerHire.login).flashing("error" -> "Couldn't submit application.")
+          }
         }
-      }
-    }.getOrElse(Future.successful(Redirect(routes.TigerHire.jobPostList)))
-  }
+      case _ =>
+        Future.successful(Redirect(routes.TigerHire.jobPostList).flashing("error" -> "aId or jId didn't get parsed right"))
+    }
+  }.getOrElse(Future.successful(Redirect(routes.TigerHire.jobPostList).flashing("error" -> "Form data not found")))
+}
 
   // def company = Action.async {
   //   // val name = "Mastercard"
