@@ -1,33 +1,23 @@
 @* home Template File *@
-@(jobList: Seq[JobItem])
+@(profileList: Seq[ProfileItem])
 
 @rnavbar("Home")
 
 @main("home") {
-    @for(job <- jobList){
-   
-       <div class="info-container">
-           <div class="text-info">
-               <a href = "@routes.TigerHire.job(job.id)"><h1>@job.name</h1></a>
-               
-     
-           </div>    
-   
-           <div class="text-info">
-            <a href = "@routes.TigerHire.viewCompany(job.cId.getOrElse(-1))">@job.id</a>
-           </div>
-           <div class="text-info">
-            @job.location
-           </div>
-           <div class="text-info">
-            @job.remote
-           </div>
-           <div class="text-info">
-            Salary: @job.salary
-           </div>
-   
-           </div>
-       </div>
-   }
-
+    @for(profile <- profileList) {
+        <div class="info-container">
+            <h3 class="text-heading"> @profile.name (@profile.pronouns)</h3>
+            <div class="text-info">
+                <strong>Bio:</strong> @profile.description
+            </div>
+            <div class="text-info">
+                <strong>Education:</strong> @profile.university
+            </div>
+            <div class="text-info">
+                <strong>Email:</strong> @profile.email
+            </div>
+            <br>      
+        </div>
+    }
 }
+
