@@ -13,7 +13,11 @@ CREATE TABLE jobs (
     hours varchar(100),
     name varchar(50) NOT NULL,
     c_id int4 REFERENCES company(id) ON DELETE CASCADE,
-    id SERIAL PRIMARY KEY 
+    id SERIAL PRIMARY KEY,
+    description varchar(5000),
+    q1 varchar(1000),
+    q2 varchar(1000),
+    q3 varchar(1000)
 );
 
 CREATE TABLE applicants (
@@ -53,4 +57,14 @@ CREATE TABLE a_profile (
 CREATE TABLE inbox (
     a_id int4 REFERENCES applicants(id) ON DELETE CASCADE,
     j_id int4 REFERENCES jobs(id) ON DELETE CASCADE
+);
+
+CREATE TABLE appl (
+    a_id int4 REFERENCES applicants(id) ON DELETE CASCADE,
+    j_id int4 REFERENCES jobs(id) ON DELETE CASCADE,
+    id SERIAL PRIMARY KEY,
+    answer1 varchar(5000),
+    answer2 varchar(5000),
+    answer3 varchar(5000),
+    experience varchar(5000)
 );

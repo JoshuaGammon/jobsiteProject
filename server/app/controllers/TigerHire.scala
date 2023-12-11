@@ -240,7 +240,7 @@ class TigerHire @Inject()(protected val dbConfigProvider: DatabaseConfigProvider
 
   def inbox = Action.async { implicit request =>
     val username = request.session.get("username").getOrElse("tjarrett")
-    model.getInboxJobs(username).map { jobs => 
+    model.getRInboxJobs(username).map { jobs => 
       Ok(views.html.inbox(username, jobs))
     }
   }

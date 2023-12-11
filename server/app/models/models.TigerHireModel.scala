@@ -54,7 +54,7 @@ class TigerHireModel(db: Database)(implicit ec: ExecutionContext) {
             } yield {
                 job
             }).result
-        ).map (jobs => jobs.map(job => JobItem(job.salary, job.location, job.remote, job.hours, job.cId, job.id, job.name)))
+        ).map (jobs => jobs.map(job => JobItem(job.salary, job.location, job.remote, job.hours, job.cId, job.id, job.name, job.description)))
     }
 
     def getJob(id: Int): Future[Seq[JobItem]] = {
@@ -64,7 +64,7 @@ class TigerHireModel(db: Database)(implicit ec: ExecutionContext) {
             } yield {
                 job
             }).result
-        ).map (jobs => jobs.map(job => JobItem(job.salary, job.location, job.remote, job.hours, job.cId, job.id, job.name)))
+        ).map (jobs => jobs.map(job => JobItem(job.salary, job.location, job.remote, job.hours, job.cId, job.id, job.name, job.description)))
     }
 
         def getCompanyInfo(id: Int): Future[Seq[CompanyDescription]] = {
@@ -77,17 +77,18 @@ class TigerHireModel(db: Database)(implicit ec: ExecutionContext) {
         ).map (companies => companies.map(company => CompanyDescription(company.headquarters.getOrElse(""), company.name.getOrElse(""), company.purpose.getOrElse(""), company.companyType.getOrElse(""),company.id)))
     }
 
-  def getInboxJobs(username: String): Future[Seq[JobItem]] = {
-    db.run(
-      (for {
-        applicant <- Applicants if applicant.username === username
-        in <- Inbox if in.aId === applicant.id
-        job <- Jobs if job.id === in.jId
-      } yield {
-        job
-      }).result
-    ).map (jobs => jobs.map(job => JobItem(job.salary, job.location, job.remote, job.hours, job.cId, job.id, job.name)))
-  }
+
+//   def getInboxJobs(username: String): Future[Seq[JobItem]] = {
+//     db.run(
+//       (for {
+//         applicant <- Applicants if applicant.username === username
+//         in <- Inbox if in.aId === applicant.id
+//         job <- Jobs if job.id === in.jId
+//       } yield {
+//         job
+//       }).result
+//     ).map (jobs => jobs.map(job => JobItem(job.salary, job.location, job.remote, job.hours, job.cId, job.id, job.name, job.description)))
+//   }
 
   def getRInboxJobs(username: String): Future[Seq[JobItem]] = {
     db.run(
@@ -98,20 +99,20 @@ class TigerHireModel(db: Database)(implicit ec: ExecutionContext) {
       } yield {
         job
       }).result
-    ).map (jobs => jobs.map(job => JobItem(job.salary, job.location, job.remote, job.hours, job.cId, job.id, job.name)))
+    ).map (jobs => jobs.map(job => JobItem(job.salary, job.location, job.remote, job.hours, job.cId, job.id, job.name, job.description)))
   }
 
-  def getRProfileJobs(username: String): Future[Seq[JobItem]] = {
-    db.run(
-      (for {
-        applicant <- Applicants if applicant.username === username
-        in <- Inbox if in.aId === applicant.id
-        job <- Jobs if job.id === in.jId
-      } yield {
-        job
-      }).result
-    ).map (jobs => jobs.map(job => JobItem(job.salary, job.location, job.remote, job.hours, job.cId, job.id, job.name)))
-  }
+//   def getRProfileJobs(username: String): Future[Seq[JobItem]] = {
+//     db.run(
+//       (for {
+//         applicant <- Applicants if applicant.username === username
+//         in <- Inbox if in.aId === applicant.id
+//         job <- Jobs if job.id === in.jId
+//       } yield {
+//         job
+//       }).result
+//     ).map (jobs => jobs.map(job => JobItem(job.salary, job.location, job.remote, job.hours, job.cId, job.id, job.name, job.description)))
+//   }
 
 
 
@@ -140,7 +141,7 @@ def getRProfile(username: String): Future[Seq[RProfileItem]] = {
   def searchJobTitle(query: String): Future[Seq[JobItem]] = {
         db.run(
             Jobs.filter(_.name.toLowerCase.like(s"%${query.toLowerCase}%")).result
-        ).map (jobs => jobs.map(job => JobItem(job.salary, job.location, job.remote, job.hours, job.cId, job.id, job.name)))
+        ).map (jobs => jobs.map(job => JobItem(job.salary, job.location, job.remote, job.hours, job.cId, job.id, job.name, job.description)))
         
  
     }    
@@ -154,7 +155,7 @@ def getRProfile(username: String): Future[Seq[RProfileItem]] = {
     def getJobsBycId(cId: Int): Future[Seq[JobItem]] = {
     db.run(
         Jobs.filter(_.cId === cId).result
-    ).map(jobs => jobs.map(job => JobItem(job.salary, job.location, job.remote, job.hours, job.cId, job.id, job.name)))
+    ).map(jobs => jobs.map(job => JobItem(job.salary, job.location, job.remote, job.hours, job.cId, job.id, job.name, job.description)))
 }
 
 
