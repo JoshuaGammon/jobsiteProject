@@ -149,9 +149,11 @@ class TigerHire @Inject()(protected val dbConfigProvider: DatabaseConfigProvider
 
 //   def favorites = TODO
 
- def job = Action {
-    Ok(views.html.job())
-  }
+ def job(id: Int) = Action.async { implicit request =>
+    model.getJob(id).map { job => 
+            Ok(views.html.job(job(0)))
+        }
+    }
 
   def applicationPage = Action {
     val jobTitle = "Software Engineer"

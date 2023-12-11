@@ -25,7 +25,7 @@ GET        /jobPostList                  controllers.TigerHire.jobPostList()
 # GET       /search                       controllers.TigerHire.searchJobTitle
 
 
- GET        /job                          controllers.TigerHire.job
+ GET        /job/:id                         controllers.TigerHire.job(id: Int)
  GET        /apply                        controllers.TigerHire.applicationPage
 # POST       /submitApplication            controllers.TigerHire.submitApplication
 
