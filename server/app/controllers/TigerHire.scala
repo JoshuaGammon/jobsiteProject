@@ -36,7 +36,7 @@ class TigerHire @Inject()(protected val dbConfigProvider: DatabaseConfigProvider
     Ok(views.html.login(loginForm))
   }
 
-    def recruiterLogin = Action { implicit request =>
+  def recruiterLogin = Action { implicit request =>
     Ok(views.html.recruiterLogin(loginForm))
   }
 
@@ -117,15 +117,16 @@ class TigerHire @Inject()(protected val dbConfigProvider: DatabaseConfigProvider
 
  def jobPostList = Action.async { implicit request =>
     model.getJobs().map { jobs => 
-            Ok(views.html.home(jobs))
-        }
+      Ok(views.html.home(jobs))
     }
+  }
 
   def rjobPostList = Action.async { implicit request =>
     model.getJobs().map { jobs => 
             println("Getting jobs page")
             Ok(views.html.rhome(jobs))
         }//.getOrElse(Redirect(routes.TigerHire.login))
+  }
     
    def searchJobTitle = Action.async { implicit request =>
     val query = request.getQueryString("search").getOrElse("")
@@ -212,7 +213,7 @@ class TigerHire @Inject()(protected val dbConfigProvider: DatabaseConfigProvider
   // }
 
   def inbox = Action {
-    val username = "mlewis"<<<<<<< getProfile
+    val username = "mlewis"
     val messages = List(("amazon", "We want you to work at Amazon!"))
     Ok(views.html.inbox(username, messages))
   }
@@ -239,4 +240,5 @@ class TigerHire @Inject()(protected val dbConfigProvider: DatabaseConfigProvider
   }
 
 //   def updateProfile = TODO
+
 }
