@@ -336,4 +336,11 @@ class TigerHire @Inject()(protected val dbConfigProvider: DatabaseConfigProvider
     Ok(views.html.newUser()) 
   }
 
+  def rApplication = Action.async { implicit request =>
+    val username = request.session.get("username").getOrElse("tjarrett")
+    model.rApplications(username).map { applicantList => 
+      Ok(views.html.rapplication(applicantList))
+    }
+  }
+
 }

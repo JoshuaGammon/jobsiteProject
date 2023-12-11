@@ -76,6 +76,19 @@ class TigerHireModel(db: Database)(implicit ec: ExecutionContext) {
     ).map (jobs => jobs.map(job => JobItem(job.salary, job.location, job.remote, job.hours, job.cId, job.id, job.name, job.description, job.q1, job.q2, job.q3)))
   }
 
+  def rApplications(username: String): Future[Seq[ApplItem]] = {
+    db.run(
+      (for {
+        recruiter <- Recruiters if recruiter.username === username
+        company <- Company if recruiter.cId === company.id
+        job <- Jobs if job.cId === company.id
+        appl <- Appl if appl.jId === job.id
+      } yield {
+        appl
+      }).result
+    ).map (appls => appls.map(appl => ApplItem(appl.aId, appl.jId, appl.answer1, appl.answer2, appl.answer3, appl.experience)))
+  }
+
   def getRInboxJobs(username: String): Future[Seq[JobItem]] = {
     db.run(
       (for {
