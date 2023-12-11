@@ -2,10 +2,9 @@
 @(loginForm: Form[LoginData])(implicit request: MessagesRequestHeader, flash: Flash)
 
 @main("Login") {
-    <h2>Login</h2>
 
     <form method="post" action="@routes.TigerHire.validateApplicantPost">
-        <h3>Login Here!</h3>
+        <h3>Welcome to TigerHire!</h3>
         <br>
         Username: <input type="text" name="username" id="username-login"></input>
         <br>
@@ -19,11 +18,9 @@
         <h3>Create New User</h3>
         <input type="submit" value = "Create User"></input>
     </form>
-   
+    <br>
     <a href = "@routes.TigerHire.recruiterLogin">
-        <button>
-        <h2>Recruiter Login</h2>
-        </button> 
+        Need to log in as a recruiter?
     </a>
 
 }
