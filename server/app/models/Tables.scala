@@ -14,7 +14,7 @@ trait Tables {
   import slick.jdbc.{GetResult => GR}
 
   /** DDL for all tables. Call .create to execute. */
-  lazy val schema: profile.SchemaDescription = Array(Applicants.schema, AProfile.schema, Company.schema, Items.schema, Jobs.schema, Recruiters.schema, RProfile.schema, Users.schema).reduceLeft(_ ++ _)
+  lazy val schema: profile.SchemaDescription = Array(Applicants.schema, AProfile.schema, Company.schema, Inbox.schema, Items.schema, Jobs.schema, Recruiters.schema, RProfile.schema, Users.schema).reduceLeft(_ ++ _)
   @deprecated("Use .schema instead of .ddl", "3.0")
   def ddl = schema
 
@@ -51,35 +51,37 @@ trait Tables {
   lazy val Applicants = new TableQuery(tag => new Applicants(tag))
 
   /** Entity class storing rows of table AProfile
-   *  @param description Database column description SqlType(varchar), Length(2000,true), Default(None)
-   *  @param education Database column education SqlType(varchar), Length(50,true), Default(None)
-   *  @param name Database column name SqlType(varchar), Length(50,true), Default(None)
-   *  @param university Database column university SqlType(varchar), Length(30,true), Default(None)
-   *  @param email Database column email SqlType(varchar), Length(20,true), Default(None)
-   *  @param pronouns Database column pronouns SqlType(varchar), Length(50,true), Default(None)
+   *  @param description Database column description SqlType(varchar), Length(2000,true)
+   *  @param education Database column education SqlType(varchar), Length(50,true)
+   *  @param name Database column name SqlType(varchar), Length(50,true)
+   *  @param university Database column university SqlType(varchar), Length(30,true)
+   *  @param email Database column email SqlType(varchar), Length(20,true)
+   *  @param pronouns Database column pronouns SqlType(varchar), Length(50,true)
    *  @param aId Database column a_id SqlType(int4), Default(None) */
-  case class AProfileRow(description: Option[String] = None, education: Option[String] = None, name: Option[String] = None, university: Option[String] = None, email: Option[String] = None, pronouns: Option[String] = None, aId: Option[Int] = None)
+  case class AProfileRow(description: String, education: String, name: String, university: String, email: String, pronouns: String, aId: Option[Int] = None)
   /** GetResult implicit for fetching AProfileRow objects using plain SQL queries */
-  implicit def GetResultAProfileRow(implicit e0: GR[Option[String]], e1: GR[Option[Int]]): GR[AProfileRow] = GR{
+  implicit def GetResultAProfileRow(implicit e0: GR[String], e1: GR[Option[Int]]): GR[AProfileRow] = GR{
     prs => import prs._
-    AProfileRow.tupled((<<?[String], <<?[String], <<?[String], <<?[String], <<?[String], <<?[String], <<?[Int]))
+    AProfileRow.tupled((<<[String], <<[String], <<[String], <<[String], <<[String], <<[String], <<?[Int]))
   }
   /** Table description of table a_profile. Objects of this class serve as prototypes for rows in queries. */
   class AProfile(_tableTag: Tag) extends profile.api.Table[AProfileRow](_tableTag, "a_profile") {
     def * = (description, education, name, university, email, pronouns, aId).<>(AProfileRow.tupled, AProfileRow.unapply)
+    /** Maps whole row to an option. Useful for outer joins. */
+    def ? = ((Rep.Some(description), Rep.Some(education), Rep.Some(name), Rep.Some(university), Rep.Some(email), Rep.Some(pronouns), aId)).shaped.<>({r=>import r._; _1.map(_=> AProfileRow.tupled((_1.get, _2.get, _3.get, _4.get, _5.get, _6.get, _7)))}, (_:Any) =>  throw new Exception("Inserting into ? projection not supported."))
 
-    /** Database column description SqlType(varchar), Length(2000,true), Default(None) */
-    val description: Rep[Option[String]] = column[Option[String]]("description", O.Length(2000,varying=true), O.Default(None))
-    /** Database column education SqlType(varchar), Length(50,true), Default(None) */
-    val education: Rep[Option[String]] = column[Option[String]]("education", O.Length(50,varying=true), O.Default(None))
-    /** Database column name SqlType(varchar), Length(50,true), Default(None) */
-    val name: Rep[Option[String]] = column[Option[String]]("name", O.Length(50,varying=true), O.Default(None))
-    /** Database column university SqlType(varchar), Length(30,true), Default(None) */
-    val university: Rep[Option[String]] = column[Option[String]]("university", O.Length(30,varying=true), O.Default(None))
-    /** Database column email SqlType(varchar), Length(20,true), Default(None) */
-    val email: Rep[Option[String]] = column[Option[String]]("email", O.Length(20,varying=true), O.Default(None))
-    /** Database column pronouns SqlType(varchar), Length(50,true), Default(None) */
-    val pronouns: Rep[Option[String]] = column[Option[String]]("pronouns", O.Length(50,varying=true), O.Default(None))
+    /** Database column description SqlType(varchar), Length(2000,true) */
+    val description: Rep[String] = column[String]("description", O.Length(2000,varying=true))
+    /** Database column education SqlType(varchar), Length(50,true) */
+    val education: Rep[String] = column[String]("education", O.Length(50,varying=true))
+    /** Database column name SqlType(varchar), Length(50,true) */
+    val name: Rep[String] = column[String]("name", O.Length(50,varying=true))
+    /** Database column university SqlType(varchar), Length(30,true) */
+    val university: Rep[String] = column[String]("university", O.Length(30,varying=true))
+    /** Database column email SqlType(varchar), Length(20,true) */
+    val email: Rep[String] = column[String]("email", O.Length(20,varying=true))
+    /** Database column pronouns SqlType(varchar), Length(50,true) */
+    val pronouns: Rep[String] = column[String]("pronouns", O.Length(50,varying=true))
     /** Database column a_id SqlType(int4), Default(None) */
     val aId: Rep[Option[Int]] = column[Option[Int]]("a_id", O.Default(None))
 
@@ -120,6 +122,32 @@ trait Tables {
   }
   /** Collection-like TableQuery object for table Company */
   lazy val Company = new TableQuery(tag => new Company(tag))
+
+  /** Entity class storing rows of table Inbox
+   *  @param aId Database column a_id SqlType(int4), Default(None)
+   *  @param jId Database column j_id SqlType(int4), Default(None) */
+  case class InboxRow(aId: Option[Int] = None, jId: Option[Int] = None)
+  /** GetResult implicit for fetching InboxRow objects using plain SQL queries */
+  implicit def GetResultInboxRow(implicit e0: GR[Option[Int]]): GR[InboxRow] = GR{
+    prs => import prs._
+    InboxRow.tupled((<<?[Int], <<?[Int]))
+  }
+  /** Table description of table inbox. Objects of this class serve as prototypes for rows in queries. */
+  class Inbox(_tableTag: Tag) extends profile.api.Table[InboxRow](_tableTag, "inbox") {
+    def * = (aId, jId).<>(InboxRow.tupled, InboxRow.unapply)
+
+    /** Database column a_id SqlType(int4), Default(None) */
+    val aId: Rep[Option[Int]] = column[Option[Int]]("a_id", O.Default(None))
+    /** Database column j_id SqlType(int4), Default(None) */
+    val jId: Rep[Option[Int]] = column[Option[Int]]("j_id", O.Default(None))
+
+    /** Foreign key referencing Applicants (database name inbox_a_id_fkey) */
+    lazy val applicantsFk = foreignKey("inbox_a_id_fkey", aId, Applicants)(r => Rep.Some(r.id), onUpdate=ForeignKeyAction.NoAction, onDelete=ForeignKeyAction.Cascade)
+    /** Foreign key referencing Jobs (database name inbox_j_id_fkey) */
+    lazy val jobsFk = foreignKey("inbox_j_id_fkey", jId, Jobs)(r => Rep.Some(r.id), onUpdate=ForeignKeyAction.NoAction, onDelete=ForeignKeyAction.Cascade)
+  }
+  /** Collection-like TableQuery object for table Inbox */
+  lazy val Inbox = new TableQuery(tag => new Inbox(tag))
 
   /** Entity class storing rows of table Items
    *  @param itemId Database column item_id SqlType(serial), AutoInc, PrimaryKey

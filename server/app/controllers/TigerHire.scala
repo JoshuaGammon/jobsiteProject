@@ -233,11 +233,21 @@ class TigerHire @Inject()(protected val dbConfigProvider: DatabaseConfigProvider
   //   }
   // }
 
-  def inbox = Action {
-    val username = "mlewis"
-    val messages = List(("amazon", "We want you to work at Amazon!"))
-    Ok(views.html.inbox(username, messages))
+  def inbox = Action.async { implicit request =>
+    val username = request.session.get("username").getOrElse("tjarrett")
+    model.getInboxJobs(username).map { jobs => 
+      Ok(views.html.inbox(username, jobs))
+    }
   }
+
+  def rinbox = Action.async { implicit request =>
+    val username = request.session.get("username").getOrElse("tjarrett")
+    model.getRInboxJobs(username).map { jobs => 
+      Ok(views.html.rinbox(username, jobs))
+    }
+  }
+
+  
 
 //   def sendMessage = TODO
      //    Action { implicit request =>val usernameOption = request.session.get("username")
